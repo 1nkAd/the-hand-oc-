@@ -17,12 +17,12 @@
   --text-main: #f4f4f5;
   --text-muted: #a1a1aa;
   --text-bright: #ffffff;
-  --glass-bg: rgba(255, 255, 255, 0.02);
-  --glass-bg-hover: rgba(255, 255, 255, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-hover: rgba(255, 255, 255, 0.08);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-hover: rgba(255, 213, 0, 0.4);
-  --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.6);
-  --card-shadow-hover: 0 16px 48px -8px rgba(0, 0, 0, 0.8), 0 0 24px rgba(255, 213, 0, 0.15);
+  --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 16px 48px -8px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 213, 0, 0.15);
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -114,6 +114,7 @@ a, button, input { cursor: none; }
   animation: fadeInIntro 2s 1.5s ease forwards; 
   text-shadow: 0 0 30px var(--accent-glow); 
   margin-top: 20px;
+  letter-spacing: -0.02em;
 }
 @keyframes drawLine { to { width: 80vw; } }
 @keyframes fadeInIntro { to { opacity: 1; } }
@@ -301,6 +302,7 @@ body.theme-tree .gb-table td {
 }
 body.theme-tree .section__label {
   color: #111;
+  letter-spacing: -0.02em;
 }
 
 /* --------------------------------------------------------
@@ -573,6 +575,7 @@ ul, ol {
   line-height: 1.1;
   margin-bottom: 20px;
   animation: heroFadeUp 1.2s ease-out both;
+  letter-spacing: -0.02em;
 }
 
 .hero__subtitle {
@@ -657,6 +660,7 @@ ul, ol {
   margin-bottom: 50px;
   position: relative;
   padding-bottom: 20px;
+  letter-spacing: -0.02em;
 }
 
 .section__label::after {
@@ -740,6 +744,9 @@ ul, ol {
   color: var(--accent-primary);
   font-weight: 600;
   margin-bottom: 8px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .id-card__value {
@@ -793,6 +800,9 @@ ul, ol {
   min-width: 120px;
   flex-shrink: 0;
   padding-top: 2px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .appear-desc {
@@ -1806,7 +1816,8 @@ ul, ol {
 
   .section__label {
     margin-bottom: 36px;
-  }
+    letter-spacing: -0.02em;
+}
 }
 
 /* --------------------------------------------------------
@@ -1851,7 +1862,8 @@ ul, ol {
 
   .hero__title {
     letter-spacing: 0.12em;
-  }
+    letter-spacing: -0.02em;
+}
 
   .content {
     padding: 0 16px 80px;
@@ -1916,7 +1928,10 @@ ul, ol {
 
   .appear-tag {
     min-width: auto;
-  }
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 
   .irony-item {
     grid-template-columns: 1fr;
@@ -1979,7 +1994,8 @@ ul, ol {
 
   .hero__title {
     letter-spacing: 0.08em;
-  }
+    letter-spacing: -0.02em;
+}
 
   .hero__subtitle {
     font-size: 0.85rem;
@@ -1997,7 +2013,8 @@ ul, ol {
   .section__label {
     margin-bottom: 28px;
     padding-bottom: 16px;
-  }
+    letter-spacing: -0.02em;
+}
 
   .section__label::after {
     width: 40px;
@@ -2187,7 +2204,8 @@ ul, ol {
     color: black;
     text-shadow: none;
     animation: none;
-  }
+    letter-spacing: -0.02em;
+}
 
   .hero__subtitle {
     color: #444;
@@ -2201,7 +2219,8 @@ ul, ol {
 
   .section__label {
     color: #333;
-  }
+    letter-spacing: -0.02em;
+}
 
   .section__label::after {
     background: #333;
@@ -2814,4 +2833,18 @@ body.theme-satanail {
 button:active, .nav__audio-toggle:active, .nav__theme-toggle:active, .modal__close:active, .nav__link:active {
   transform: scale(0.96) !important;
   transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Vercel Subtle Structural Grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 10%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 10%, transparent 80%);
 }
