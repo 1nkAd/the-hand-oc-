@@ -1,0 +1,132 @@
+---
+interface Props {
+	themeSong?: string;
+}
+
+const { themeSong = 'bg-golden.opus' } = Astro.props;
+---
+
+<!-- Custom Cursor Element -->
+<div id="custom-cursor" class="pointer-events-none fixed top-0 left-0 w-4 h-4 rounded-full border-2 border-white/50 z-[9999] transition-transform duration-75 ease-out mix-blend-difference hidden md:block"></div>
+
+<!-- Audio Elements -->
+<audio id="bg-audio" src={`/audio/${themeSong}`} loop preload="auto"></audio>
+<audio id="hover-audio" src="/audio/hover.mp3" preload="auto"></audio>
+<audio id="click-audio" src="/audio/click.mp3" preload="auto"></audio>
+<audio id="theme-shift-audio" src="/audio/theme-shift.mp3" preload="auto"></audio>
+
+<script>
+	// Use global state for audio toggle so it persists across view transitions
+	declare global {
+		interface Window {
+			audioEnabled: boolean;
+		}
+	}
+
+	function initCinematicEngine() {
+		// --- CUSTOM CURSOR ---
+		const cursor = document.getElementById('custom-cursor');
+		let isHovering = false;
+
+		if (cursor && window.matchMedia('(pointer: fine)').matches) {
+			// Show cursor
+			cursor.style.display = 'block';
+			
+			document.addEventListener('mousemove', (e) => {
+				cursor.style.transform = `translate(${e.clientX - 8}px, ${e.clientY - 8}px) ${isHovering ? 'scale(1.5)' : 'scale(1)'}`;
+				
+				// Trail generation
+				if (Math.random() > 0.7) {
+					const trail = document.createElement('div');
+					trail.className = 'pointer-events-none fixed w-1.5 h-1.5 rounded-full mix-blend-difference z-[9998] animate-ping opacity-50';
+					trail.style.left = `${e.clientX - 3}px`;
+					trail.style.top = `${e.clientY - 3}px`;
+					
+					// Theme colors
+					const isBlood = document.body.classList.contains('from-black'); // rough check, but better to check data-theme if we had one
+					trail.style.backgroundColor = 'rgba(255, 213, 0, 0.8)'; // default gold trail
+					
+					document.body.appendChild(trail);
+					setTimeout(() => trail.remove(), 400);
+				}
+			});
+		}
+
+		// --- AUDIO ENGINE ---
+		// Initialize state from localStorage
+		if (typeof window.audioEnabled === 'undefined') {
+			window.audioEnabled = localStorage.getItem('audio_enabled') === 'true';
+		}
+		
+		const bgAudio = document.getElementById('bg-audio') as HTMLAudioElement;
+		
+		// Attempt to play if enabled (browsers might block autoplay until interaction)
+		if (window.audioEnabled && bgAudio) {
+			bgAudio.volume = 0.2;
+			bgAudio.play().catch(() => {
+				console.log("Autoplay blocked by browser. User must click first.");
+			});
+		}
+
+		// Interactive Elements Sound & Cursor Hover
+		const interactables = document.querySelectorAll('a, button, input, summary, [role="button"]');
+		const hoverSound = document.getElementById('hover-audio') as HTMLAudioElement;
+		const clickSound = document.getElementById('click-audio') as HTMLAudioElement;
+		
+		interactables.forEach(el => {
+			el.addEventListener('mouseenter', () => {
+				isHovering = true;
+				if (window.audioEnabled && hoverSound) {
+					const clone = hoverSound.cloneNode() as HTMLAudioElement;
+					clone.volume = 0.2;
+					clone.play().catch(() => {});
+				}
+			});
+			
+			el.addEventListener('mouseleave', () => {
+				isHovering = false;
+			});
+
+			el.addEventListener('click', () => {
+				if (window.audioEnabled && clickSound) {
+					const clone = clickSound.cloneNode() as HTMLAudioElement;
+					clone.volume = 0.4;
+					clone.play().catch(() => {});
+				}
+			});
+		});
+
+		// --- 3D TILT CARDS ---
+		const tiltCards = document.querySelectorAll('.tilt-card') as NodeListOf<HTMLElement>;
+		tiltCards.forEach(card => {
+			card.addEventListener('mousemove', (e) => {
+				const rect = card.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+				const centerX = rect.width / 2;
+				const centerY = rect.height / 2;
+				
+				// Calculate rotation (max 10 degrees)
+				const rotateX = ((y - centerY) / centerY) * -10;
+				const rotateY = ((x - centerX) / centerX) * 10;
+				
+				card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+			});
+			
+			card.addEventListener('mouseleave', () => {
+				card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+			});
+		});
+	}
+
+	// Run on initial load and after view transitions
+	document.addEventListener('astro:page-load', initCinematicEngine);
+</script>
+
+<style is:global>
+	/* Hide default cursor on desktop and replace with custom one */
+	@media (pointer: fine) {
+		html { cursor: none; }
+		a, button, input, summary { cursor: none !important; }
+	}
+</style>

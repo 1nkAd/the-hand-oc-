@@ -33,25 +33,35 @@ const characters = await getCollection('characters');
           light: 'bg-black/30'
         };
 
-        const themeColor = char.data.theme as keyof typeof borderColors;
+        const textColors = {
+          gold: 'text-yellow-500',
+          blood: 'text-red-500',
+          cosmic: 'text-blue-400',
+          light: 'text-white'
+        };
+
+        const themeColor = char.data.theme as keyof typeof textColors;
         
         return (
           <a href={`/character/${char.id}`} class="group relative block outline-none">
             <div class={`absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none`} />
             
-            <article class={`h-full p-8 rounded-2xl border backdrop-blur-md transition-all duration-300 transform group-hover:-translate-y-2 shadow-lg hover:shadow-2xl ${borderColors[themeColor]} ${bgColors[themeColor]}`}>
-              
-              <div class="mb-4">
-                <span class="text-xs uppercase tracking-widest font-semibold text-gray-500">{char.data.race}</span>
-              </div>
-              
-              <h2 transition:name={`title-${char.id}`} class="text-3xl font-bold mb-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all">
-                {char.data.name}
-              </h2>
-              
-              <h3 class="text-lg text-gray-300 font-medium mb-6">
-                {char.data.title}
-              </h3>
+            <article class={`tilt-card block h-full p-8 rounded-2xl border transition-all duration-500 group shadow-lg hover:shadow-2xl ${borderColors[themeColor]} ${bgColors[themeColor]}`} style="transform-style: preserve-3d; transition: transform 0.1s ease, box-shadow 0.5s ease;">
+            
+            <div class="flex justify-between items-start mb-6" style="transform: translateZ(20px);">
+              <span class={`text-xs font-bold tracking-widest uppercase border border-white/10 px-3 py-1 rounded-full ${textColors[themeColor as keyof typeof textColors]}`}>
+                {char.data.race}
+              </span>
+              <span class="text-xs tracking-widest text-gray-500 uppercase">{char.data.status}</span>
+            </div>
+            
+            <h2 transition:name={`title-${char.id}`} class={`text-3xl font-bold mb-2 group-hover:scale-105 transform origin-left transition-transform duration-500 ${textColors[themeColor as keyof typeof textColors]}`} style="transform: translateZ(30px);">
+              {char.data.name}
+            </h2>
+            
+            <h3 class="text-lg text-gray-400 font-light mb-6" style="transform: translateZ(25px);">
+              {char.data.title}
+            </h3>
               
               <p class="text-sm text-gray-400 italic border-l-2 border-gray-700 pl-4">
                 "{char.data.quote}"

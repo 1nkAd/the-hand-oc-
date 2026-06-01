@@ -10,6 +10,7 @@ const characters = defineCollection({
     race: z.string(),
     status: z.string(),
     quote: z.string().optional(),
+    themeSong: z.string().optional(),
   })
 });
 

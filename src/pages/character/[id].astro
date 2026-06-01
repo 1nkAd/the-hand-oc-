@@ -39,7 +39,7 @@ const proseStyles = {
 const themeColor = char.data.theme as keyof typeof textColors;
 ---
 
-<Layout title={char.data.name} theme={themeColor}>
+<Layout title={char.data.name} theme={themeColor} themeSong={char.data.themeSong}>
   <article class="max-w-4xl mx-auto px-6 py-16 md:py-24">
     
     <a href="/" class="inline-flex items-center text-gray-400 hover:text-white transition-colors mb-12 group">

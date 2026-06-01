@@ -40,11 +40,11 @@ const themeColor = theme in borderColors ? theme : 'light';
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
     {stats.map((stat) => (
-      <div class={`p-6 rounded-xl bg-black/40 backdrop-blur-md border ${borderColors[themeColor]} transition-colors duration-500 group flex flex-col justify-center`}>
-        <div class="text-xs font-bold tracking-widest text-gray-500 uppercase mb-2 group-hover:text-gray-400 transition-colors">
+      <div class={`tilt-card p-6 rounded-xl bg-black/40 backdrop-blur-md border ${borderColors[themeColor]} transition-colors duration-500 group flex flex-col justify-center`} style="transform-style: preserve-3d; transition: transform 0.1s ease, border-color 0.5s ease, background-color 0.5s ease;">
+        <div class="text-xs font-bold tracking-widest text-gray-500 uppercase mb-2 group-hover:text-gray-400 transition-colors" style="transform: translateZ(20px);">
           {stat.label}
         </div>
-        <div class={`text-lg font-medium text-gray-200 group-hover:${textColors[themeColor]} transition-colors`}>
+        <div class={`text-lg font-medium text-gray-200 group-hover:${textColors[themeColor]} transition-colors`} style="transform: translateZ(30px);">
           {stat.value}
         </div>
       </div>

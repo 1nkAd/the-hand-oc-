@@ -4,13 +4,15 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import CinematicEngine from '../components/CinematicEngine.astro';
 
 interface Props {
 	title: string;
 	theme?: 'gold' | 'blood' | 'cosmic' | 'light';
+	themeSong?: string;
 }
 
-const { title, theme = 'light' } = Astro.props;
+const { title, theme = 'light', themeSong } = Astro.props;
 
 // Map themes to specific background styles
 const themeClasses = {
@@ -38,5 +40,6 @@ const themeClasses = {
 			<slot />
 		</div>
 		<Footer />
+		<CinematicEngine themeSong={themeSong} />
 	</body>
 </html>

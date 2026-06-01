@@ -12,14 +12,34 @@
     <div class="hidden md:flex items-center space-x-8">
       <a href="/" class="text-sm font-medium tracking-widest text-white/70 hover:text-white uppercase transition-colors">Hub</a>
       <a href="#" class="text-sm font-medium tracking-widest text-white/70 hover:text-white uppercase transition-colors">Archive</a>
+      
+      <!-- Audio Toggle -->
+      <button id="audio-toggle-desktop" class="text-white/50 hover:text-yellow-500 transition-colors focus:outline-none" aria-label="Toggle Audio">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path id="audio-icon-desktop" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          <path id="audio-waves-desktop" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M17.657 6.343a8 8 0 010 11.314" class="hidden" />
+          <line id="audio-slash-desktop" x1="17" y1="7" x2="7" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none">
-      <span class="w-6 h-0.5 bg-white/70 transition-transform duration-300"></span>
-      <span class="w-6 h-0.5 bg-white/70 transition-opacity duration-300"></span>
-      <span class="w-6 h-0.5 bg-white/70 transition-transform duration-300"></span>
-    </button>
+    <!-- Mobile Menu Button & Audio -->
+    <div class="flex items-center space-x-4 md:hidden">
+      <!-- Audio Toggle Mobile -->
+      <button id="audio-toggle-mobile" class="text-white/50 hover:text-yellow-500 transition-colors focus:outline-none" aria-label="Toggle Audio">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path id="audio-icon-mobile" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+          <path id="audio-waves-mobile" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M17.657 6.343a8 8 0 010 11.314" class="hidden" />
+          <line id="audio-slash-mobile" x1="17" y1="7" x2="7" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <button id="mobile-menu-btn" class="flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none">
+        <span class="w-6 h-0.5 bg-white/70 transition-transform duration-300"></span>
+        <span class="w-6 h-0.5 bg-white/70 transition-opacity duration-300"></span>
+        <span class="w-6 h-0.5 bg-white/70 transition-transform duration-300"></span>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile Menu Dropdown -->
@@ -32,8 +52,8 @@
 </nav>
 
 <script>
-  // Setup mobile menu toggle with view transitions in mind
   function setupNavbar() {
+    // --- Mobile Menu Toggle ---
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     const spans = btn?.querySelectorAll('span');
@@ -41,8 +61,6 @@
     if (btn && menu && spans) {
       btn.addEventListener('click', () => {
         menu.classList.toggle('hidden');
-        
-        // Simple hamburger animation
         if (menu.classList.contains('hidden')) {
           spans[0].style.transform = 'translateY(0) rotate(0)';
           spans[1].style.opacity = '1';
@@ -54,6 +72,57 @@
         }
       });
     }
+
+    // --- Audio Toggle Logic ---
+    function updateAudioUI() {
+      const enabled = window.audioEnabled;
+      ['desktop', 'mobile'].forEach(type => {
+        const toggleBtn = document.getElementById(`audio-toggle-${type}`);
+        const waves = document.getElementById(`audio-waves-${type}`);
+        const slash = document.getElementById(`audio-slash-${type}`);
+        
+        if (toggleBtn && waves && slash) {
+          if (enabled) {
+            toggleBtn.classList.add('text-yellow-500');
+            toggleBtn.classList.remove('text-white/50');
+            waves.classList.remove('hidden');
+            slash.classList.add('hidden');
+          } else {
+            toggleBtn.classList.remove('text-yellow-500');
+            toggleBtn.classList.add('text-white/50');
+            waves.classList.add('hidden');
+            slash.classList.remove('hidden');
+          }
+        }
+      });
+    }
+
+    // Initial sync
+    updateAudioUI();
+
+    // Click Handlers
+    ['desktop', 'mobile'].forEach(type => {
+      const btn = document.getElementById(`audio-toggle-${type}`);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          window.audioEnabled = !window.audioEnabled;
+          localStorage.setItem('audio_enabled', window.audioEnabled.toString());
+          
+          // Apply to actual audio element
+          const bgAudio = document.getElementById('bg-audio') as HTMLAudioElement;
+          if (bgAudio) {
+            if (window.audioEnabled) {
+              bgAudio.volume = 0.2;
+              bgAudio.play().catch(()=>{});
+            } else {
+              bgAudio.pause();
+            }
+          }
+          
+          updateAudioUI();
+        });
+      }
+    });
   }
 
   // Run on initial load
