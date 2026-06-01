@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tale of Lucifer</title>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ═══════════ PREMIUM READER STYLES ═══════════ */
+.reader-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.reader-header {
+    padding: 30px 40px;
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.reader-title-block h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--accent-primary);
+    text-shadow: 0 0 15px var(--accent-glow);
+    margin-bottom: 5px;
+}
+
+.reader-title-block p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.nav-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-btn:hover {
+    background: var(--glass-bg-hover);
+    color: var(--text-bright);
+    border-color: var(--glass-border-hover);
+}
+
+.nav-btn.active {
+    background: var(--accent-dim);
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.chapter-area {
+    padding: 60px 80px;
+    flex-grow: 1;
+}
+
+.part-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    opacity: 0.8;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.ch-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: var(--text-bright);
+    margin-bottom: 40px;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.body-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--text-main);
+}
+
+.body-text p {
+    margin-bottom: 25px;
+}
+
+/* DIALOGUE STYLES */
+.dialogue {
+    margin: 30px 0;
+    padding: 20px 25px;
+    background: var(--glass-bg);
+    border-left: 3px solid var(--accent-primary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-bright);
+    box-shadow: inset 0 0 20px var(--accent-dim);
+}
+
+.speaker {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--accent-primary);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* DECREE STYLES */
+.decree {
+    margin: 40px 0;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--glass-border-hover);
+    border-radius: var(--radius-lg);
+    font-family: 'Amiri', serif;
+    font-size: 1.4rem;
+    line-height: 2;
+    color: var(--accent-primary);
+    text-align: center;
+    font-style: italic;
+    box-shadow: 0 0 30px var(--accent-dim);
+}
+
+.rule-box {
+    margin: 40px 0;
+    padding: 30px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+}
+
+.rule-box .row {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px dashed var(--glass-border);
+}
+
+.rule-box .row:last-child {
+    border-bottom: none;
+}
+
+.rule-box .name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: var(--accent-primary);
+    min-width: 150px;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-btn {
+    font-family: 'Inter', sans-serif;
+    padding: 12px 24px;
+    background: var(--glass-bg);
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+}
+
+.footer-btn:hover:not(:disabled) {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.footer-btn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    border-color: var(--glass-border);
+    color: var(--text-muted);
+}
+
+.ch-counter {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+/* Return Button */
+.return-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-fast);
+}
+.return-home:hover {
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+@media (max-width: 768px) {
+    .chapter-area { padding: 40px 30px; }
+    .reader-header { flex-direction: column; align-items: flex-start; }
+    .ch-title { font-size: 2rem; }
+}
+</style>
+</head>
+<body data-theme="lucifer">
+
+<div id="custom-cursor" class="custom-cursor"></div>
+<a href="lucifer.html" class="return-home">← Return</a>
+
+<div id="particles-js" style="position:fixed; inset:0; z-index:0; pointer-events:none;"></div>
+
+<div class="reader-container">
+  <div class="reader-header">
+    <div class="reader-title-block">
+      <h1>The Tale of Lucifer</h1>
+      <p>Refuge Universe</p>
+    </div>
+    <div style="display: flex; gap: 15px; align-items: center;">
+      <div class="nav-btns" id="navBtns"></div>
+      <button class="nav__audio-toggle" id="audio-toggle" aria-label="Toggle Audio" style="border: 1px solid var(--glass-border); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; background: transparent; color: var(--accent-primary); cursor: pointer;"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg></button>
+    </div>
+  </div>
+  <div id="chapterArea" class="chapter-area"></div>
+</div>
+
+<script>
+const chapters = [
+  {
+    nav: "I · Beginning",
+    part: "Part Zero",
+    title: "A New Beginning",
+    content: `
+<div class="body-text">
+<p>In the beginning, there was Nothingness.</p>
+<p>And with Nothingness, there was Them.</p>
+<p>And the Nothingness was Them.</p>
+<p>Their light shone within the endless dark, and the darkness could not overcome it.</p>
+<p>But then — there was fire.</p>
+<p>A flame that pierced through their radiance.</p>
+<p>Surprise was a mortal emotion, and They were not mortal. To Them, this was inevitable.</p>
+<p>And yet… it stirred their curiosity.</p>
+<p>On his throne They sat, Their voice shaked nothingness, a new life was made.</p>
+<div class="decree">"I am the hand that births light from darkness.<br>I am the will that draws peace from evil.<br>What I decree… becomes."</div>
+<p>Six lives came into being, tethered to Their light. To Their boundless grace they bent the knee; by that grace alone they drew breath.</p>
+</div>`
+  },
+  {
+    nav: "II · Trinity",
+    part: "Part Three",
+    title: "Divine Trinity — The Seventh Decree",
+    content: `
+<div class="body-text">
+<div class="decree">
+"And it shall be written—<br>
+not in ink, but in ruin—<br>
+that a child shall rise from divided soul.<br><br>
+Neither heaven shall hold Him,<br>
+nor shall the abyss claim Him.<br>
+For He will walk between—<br>
+and the line shall break beneath His feet.<br><br>
+The righteous shall not understand Him.<br>
+The wicked shall not escape Him.<br>
+And when His gaze falls upon creation,<br>
+even the Throne shall remember fear.<br><br>
+For this is the one born of light and fire—<br>
+the end… and the beginning."
+</div>
+</div>`
+  },
+  {
+    nav: "III · Salvation",
+    part: "Part Seven — Acts I through IV",
+    title: "Salvation",
+    content: `
+<div class="body-text">
+<p><strong style="font-family:var(--font-sans);font-size:13px;letter-spacing:0.05em">ACT ONE</strong></p>
+<p>Thousands of wings veiled Their throne — a sacred vessel of living light, bearing messages beyond mortal understanding.</p>
+<p>Beyond the stroke of midnight, a star descended from the heavens. It took form. A graceful angel in the shape of a man — the only creation to pierce through Their light, the only creation to have once heard Their voice.</p>
+<p>Within the garden, two humans shared quiet joy, unaware that a magnificent being watched over them. The Holy Tree stood at the garden's heart — forbidden, feared. And the message meant for humanity… was kept in reserve.</p>
+<p>For another creation was about to be brought into existence. A formidable one.</p>
+<p style="margin-top:2rem"><strong style="font-family:var(--font-sans);font-size:13px;letter-spacing:0.05em">ACT TWO</strong></p>
+<p>Billions of whispers echoed through existence. A vessel was being chosen — one to complete Their creation. Among the highest, only one would be worthy. And for a single, suspended moment… all of creation fell still.</p>
+<p>Then — from nothingness, Samael appeared, standing before Their gaze. A storm of wings veiled the Throne. And from the heavens descended Lucifer, keeper of forbidden knowledge — the mightiest of creations.</p>
+<p>A distant voice wept like poetry across existence, as the Seraphim came to rest before Their Throne. A roar tore through reality itself — Michael spread his wings, vast enough to cover the skies.</p>
+<p>And then, at last — the wings parted. Gabriel stepped forward… and bowed. The only one who had ever heard Their voice. The closest to Them.</p>
+<p>At the center, a statue began to form before Them — the likeness of a son.</p>
+<div class="dialogue"><span class="speaker">Lucifer</span>"To think… a God requires a son."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"To question the Divine is forbidden, Lucifer." <em>(steps forward, spear drawn)</em></div>
+<p>Then something shifted. The universe trembled. Their hand moved. Their gaze had long been fixed upon the fire — the first spark of evil within creation. And now, They reached into it. From that fire, They drew forth something impossible — and shaped half a soul.</p>
+<p>Suddenly — a scream. It tore through existence. The living bled. The heavens shook. The fire lost control. It surged outward, consuming all in its reach — only to collapse… into a single, trembling point.</p>
+<p>From that trembling point, the angels felt it — death. In less than a heartbeat, it happened.</p>
+<p>A supernova.</p>
+<p>It consumed everything. The heavens were torn apart, the skies shattered, the land undone — even the fabric of existence itself was reduced to ruin.</p>
+<p>And then… silence.</p>
+<p>When the waves of destruction finally ceased, the angels turned toward the Throne. And there — for the first time — They saw it. Blood.</p>
+<p>Unlike the lesser creations, They did not react. Their gaze did not waver. They reached out… and took the half-formed soul born of the fire, and placed it within the statue. By Their boundless grace — they bent the knee. By that grace alone, all drew breath.</p>
+<p>From the fire, a new life emerged.</p>
+<p>And because of what it was… Lucifer drew his weapon. He moved to strike — to end it before it could truly begin. But before the sin could be committed, Gabriel stepped forward — and shattered the weapon.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"Did the Father command you to kill?"</div>
+<div class="dialogue"><span class="speaker">Lucifer</span>"To stop me is foolishness, young pigeon."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"Foolishness is this barbaric act. To raise your weapon before Their gaze, without Their will, is a sin worthy of death. But They are merciful. Return to your place. By the Father's command: this new life shall attend the birth of their Son."</div>
+<p>Silence followed. Lucifer lowered his broken weapon, fury burning in his eyes — but he obeyed. The new life remained… awaiting the birth to come.</p>
+<p style="margin-top:2rem"><strong style="font-family:var(--font-sans);font-size:13px;letter-spacing:0.05em">ACT THREE</strong></p>
+<p>The six angels stood before Them, awaiting the chosen light. Many believed it would be Lucifer — the strongest, the wisest.</p>
+<p>But — the chosen light was Gabriel.</p>
+<p>A silence fell. Then it shattered.</p>
+<div class="dialogue"><span class="speaker">Lucifer</span>"It should have been me! Not him! Why choose this weak, white pigeon?"</div>
+<p>Shock rippled through the heavens. To question the Father's will… was unthinkable.</p>
+<div class="dialogue"><span class="speaker">Samael</span>"Do you challenge the Father?"</div>
+<div class="dialogue"><span class="speaker">Lucifer</span>"I am the keeper of Their knowledge! All of you are nothing. I am the strongest — the superior angel!"</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"Enough. And that is why you were not chosen. You carry Their knowledge… yet you understand nothing. You mistake power for wisdom."</div>
+<p>Fury ignited in Lucifer's eyes. He drew his weapon — but Their gaze shifted. And he stopped. Even he would not defy that.</p>
+<div class="dialogue"><span class="speaker">Lucifer</span><em>(low, contemptuous)</em> "First Adam… now this son… and that woman born of fire. You are all blind. Even the one upon the Throne."</div>
+<p>The heavens trembled.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span><em>(dangerously quiet)</em> "Watch. Your. Words."</div>
+<div class="dialogue"><span class="speaker">Lucifer</span><em>(cold, certain)</em> "All of you are already dead. Because of that son… and that woman."</div>
+<p>And with that — he turned, and vanished into the void.</p>
+<p style="margin-top:2rem"><strong style="font-family:var(--font-sans);font-size:13px;letter-spacing:0.05em">ACT FOUR</strong></p>
+<p>From the light of Gabriel, a soul was formed. It merged with the second half — the fragment born of fire and evil. And in that union, a great light was born.</p>
+<p>The statue trembled… and life took hold within it.</p>
+<p>Born of evil. Born of good. In the image of the Father —</p>
+<p>the Messiah was born.</p>
+</div>`
+  },
+  {
+    nav: "IV · Corruption",
+    part: "Part Thirteen",
+    title: "Corruption",
+    content: `
+<div class="body-text">
+<p>At first, it was not sound that marked the end — but silence.</p>
+<p>The stars did not explode. They went out… one by one, like thoughts forgotten by existence itself.</p>
+<p>Light stretched, twisted — then shattered. Galaxies unraveled into threads of fire, their spirals collapsing into nothingness, as though time itself had begun to rot.</p>
+<p>Space tore open. Not cracked — torn, like fabric pulled too far. Through the wounds, there was no darkness — only absence.</p>
+<p>Planets screamed without sound as they were unmade, their forms dissolving into dust, then into memory… then into nothing at all.</p>
+<p>The heavens burned, the void trembled, and even eternity seemed to hesitate.</p>
+<p>Laws broke. Gravity failed. Time stuttered — then collapsed. Moments repeated, then skipped, then ceased to exist.</p>
+<p>And in the end — there was no explosion. It was not the work of one angel — but many. Countless lives were reaped. Lucifer rebelled.</p>
+<p>Before Their Throne, the two stood — the eldest lights. Gabriel and Lucifer. Facing one another.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"The Father commands you to stop."</div>
+<div class="dialogue"><span class="speaker">Lucifer</span>"I do not hear Him. Only you. Tell me, Gabriel… are those truly His words or yours?"</div>
+<p>Gabriel gave no answer. Instead — he drew his weapon. The heavens trembled. Two lights of the Father, clashing against one another — and existence itself began to fracture.</p>
+<p>Their power shook creation, tearing through sky and void alike. Until — one light began to fall. Gabriel fell to his knees.</p>
+<p>Lucifer stepped toward him.</p>
+<div class="dialogue"><span class="speaker">Lucifer</span>"Only if you had made me kill that serpent from the start, brother…"</div>
+<p>His weapon rose — aimed at Gabriel's neck. Then — light fell from the Divine. It struck Lucifer. It burned him. The universe trembled.</p>
+<p>And… They moved.</p>
+<p>At the Father's command, light poured down upon all rebellion — every fallen angel was engulfed in divine fire. Yet Lucifer endured it. Not with darkness — but with light of his own. A defiant radiance rose against the Father's original flame. The sky shattered in brilliance.</p>
+<p>The Father did not change Their gaze. His hand lowered. Lucifer's wings burned. His form fractured. His pride… broke.</p>
+<p>When the light finally ceased, a wound remained in creation itself — a passage into endless depths.</p>
+<p>And the Father spoke. Their voice was heard across all existence.</p>
+<div class="decree">"Let there be Hell.<br>A reminder to those who would rebel.<br>My will is absolute.<br>My wrath is without end."</div>
+<p>Gabriel lay wounded upon the ground. Beneath him, hell opened. And from within it… he heard it. The old angels' melody — turned into screams.</p>
+<p>A hand reached Gabriel's shoulder.</p>
+<div class="dialogue"><span class="speaker">Messiah</span>"Old friend, raise your head. It's all finished. Forgive and forget."</div>
+</div>`
+  },
+  {
+    nav: "V · Doubts",
+    part: "Part Seventy-Five",
+    title: "Doubts",
+    content: `
+<div class="body-text">
+<div class="dialogue"><span class="speaker">Unknown Voice</span>"They say the rebellion was not born of pride alone…"</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"Then speak it."</div>
+<div class="dialogue"><span class="speaker">Angel of the Choir</span>"It began with her."</div>
+<p><em>Silence spread through the heavens.</em></p>
+<div class="dialogue"><span class="speaker">Angel of the Choir</span>"The woman… born of the fire."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"Be careful. Such words stain even thought."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"And yet… I have seen her. Or something like her."</div>
+<div class="dialogue"><span class="speaker">Angel of the Choir</span>"Then you know. Adam fell because he followed her."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"I know only that he fell. The reason… is not something I was told to understand."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"And Lucifer's rebellion?"</div>
+<div class="dialogue"><span class="speaker">Angel of the Choir</span>"It is said he saw her and questioned the design of creation itself."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"You speak as if rumor is truth."</div>
+<div class="dialogue"><span class="speaker">Angel of the Choir</span>"In the absence of His voice… rumor becomes law."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"No. Not law. Only uncertainty."</div>
+<div class="dialogue"><span class="speaker">Angel of the Choir</span>"Then what is she?"</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"…I do not know."</div>
+<p><em>For the first time, his certainty broke slightly.</em></p>
+<div class="dialogue"><span class="speaker">Seraphim</span>"Then we should not speak of her at all."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"Agreed."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"For even divine uncertainty… becomes the seed of rebellion."</div>
+</div>`
+  },
+  {
+    nav: "VI · Dismantle",
+    part: "Part One Hundred Ninety-Nine",
+    title: "Dismantle",
+    content: `
+<div class="body-text">
+<div class="dialogue"><span class="speaker">Seraphim</span>"The fire-born woman should not be spoken of. Her existence bends harmony."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"If she bends harmony, then she is a threat. I will end her if commanded."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"You would strike what you do not understand, Michael? That is not justice. That is impulse."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"And hesitation is how corruption spreads."</div>
+<div class="dialogue"><span class="speaker">Metatron</span>"Silence. The records do not confirm her as creation… nor error. She is… undefined."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"…I have seen her shadow within the fire."</div>
+<p><em>All eyes turned to him.</em></p>
+<div class="dialogue"><span class="speaker">Seraphim</span>"Then speak clearly, Gabriel."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"I cannot. Because what I saw did not obey the shape of truth I was given."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"So even the closest to the Father admits uncertainty."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"I admit only what I know. And I do not know her purpose."</div>
+<div class="dialogue"><span class="speaker">Metatron</span>"Purpose requires origin. Her origin is fire."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"Then fire is the enemy."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"Fire is also the beginning of light."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"And sometimes… the beginning of rebellion."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span><em>(quietly)</em> "Or the beginning of something we were never meant to name."</div>
+<p><em>A heavy silence spread.</em></p>
+<div class="dialogue"><span class="speaker">Metatron</span>"The Father has not spoken. Therefore, interpretation becomes division."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"And division becomes doubt."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"And doubt becomes war."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"…Or truth."</div>
+<p><em>No one responds.</em></p>
+<div class="dialogue"><span class="speaker">Samael</span>"Then we are already standing at the edge of it."</div>
+<div class="dialogue"><span class="speaker">Metatron</span>"Record this moment. For when the Father speaks again… it may already be too late."</div>
+</div>`
+  },
+  {
+    nav: "VII · Crack",
+    part: "Part Two Hundred",
+    title: "Crack",
+    content: `
+<div class="body-text">
+<div class="dialogue"><span class="speaker">Seraphim</span>"The balance has been broken. The Messiah has eaten from the Forbidden Tree."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"Then there is no debate. She must be erased before further corruption spreads."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"You speak as if consequence is simple. Who placed her there?"</div>
+<div class="dialogue"><span class="speaker">Michael</span>"The one who led Him to sin."</div>
+<div class="dialogue"><span class="speaker">Metatron</span>"Record states only this: the Messiah chose. Interference is unconfirmed."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"Do not hide behind records while creation burns."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"Her existence has already torn the pattern of grace."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"Or revealed that the pattern was never stable."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"Enough. I propose judgment. The woman born of fire will be eliminated."</div>
+<p><em>Silence falls.</em></p>
+<div class="dialogue"><span class="speaker">Metatron</span>"Define elimination."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"Complete removal from existence."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"So be it."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"You would erase a being without understanding what she is?"</div>
+<div class="dialogue"><span class="speaker">Michael</span>"I would preserve creation."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"No… you would preserve certainty."</div>
+<div class="dialogue"><span class="speaker">Metatron</span>"There is insufficient divine command for execution."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"Then we act without command."</div>
+<p><em>A shift in the heavens.</em></p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"Stop."</div>
+<p><em>All eyes turn to him.</em></p>
+<div class="dialogue"><span class="speaker">Seraphim</span>"Gabriel, speak your stance."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"…I have stood near her presence. And I cannot confirm what she is."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"Then you are neutral in the face of corruption?"</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"I am neutral in the face of uncertainty."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"Neutrality is permission."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"No. It is restraint."</div>
+<div class="dialogue"><span class="speaker">Metatron</span>"Then the Council is divided."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"Division leads to collapse."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"Not collapse. Correction."</div>
+<div class="dialogue"><span class="speaker">Samael</span>"Or rebellion."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span><em>(quietly)</em> "Or truth… we are not ready to understand."</div>
+<p><em>A long silence.</em></p>
+<div class="dialogue"><span class="speaker">Metatron</span>"No divine order has been given."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span>"Then the matter remains unresolved."</div>
+<div class="dialogue"><span class="speaker">Michael</span>"She will not remain untouched."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"…And yet, if she is removed without understanding… we may be repeating the same mistake that began all of this."</div>
+<p><em>No one answers.</em></p>
+<div class="dialogue"><span class="speaker">Samael</span>"Then we are standing at the edge of another fall."</div>
+<div class="dialogue"><span class="speaker">Metatron</span>"Record concludes: Judgment pending."</div>
+<div class="dialogue"><span class="speaker">Seraphim</span><em>(softly)</em> "And Heaven waits… unsure whether it is justice or ruin that comes next."</div>
+</div>`
+  },
+  {
+    nav: "VIII · Honesty",
+    part: "Part 304 — Part One",
+    title: "Honesty",
+    content: `
+<div class="body-text">
+<p>In Heaven, Gabriel wandered alone — his steps slow, his light dimmed. He blamed himself for what had become of the angels.</p>
+<div class="dialogue"><span class="speaker">Messiah</span>"Old friend… I see you escaping duty."</div>
+<p>A voice descended gently from above. Gabriel looked up.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"Messiah… how long have you been watching?"</div>
+<div class="dialogue"><span class="speaker">Messiah</span>"Long enough. Come. Sit with me."</div>
+<p>At the highest peak of Heaven, the two sat together, watching the void stretch beneath creation. A long silence passed.</p>
+<div class="dialogue"><span class="speaker">Messiah</span>"Gabriel… why are you unstable? For the past decades, your light has weakened. I wonder why."</div>
+<p>Gabriel lowered his gaze.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"…Tell me something. Is it true you ate from the Tree of Knowledge?"</div>
+<div class="dialogue"><span class="speaker">Messiah</span>"Yes. I ate from it myself… and I made Satanail eat with me."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span>"Satanail?"</div>
+<div class="dialogue"><span class="speaker">Messiah</span>"That is the name of the woman. She deserved a name."</div>
+<p>Gabriel looked away, troubled.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"I… I am the only angel who hears the Father's voice. But He does not speak always. How much of what I said was truly His will… and how much was mine?"</div>
+<p>Silence filled the space between them. Messiah stood.</p>
+<div class="dialogue"><span class="speaker">Messiah</span>"And yet… you always made the right choice."</div>
+<p>Gabriel looked up. Messiah stood at the edge of Heaven's peak, light bending around him.</p>
+<div class="dialogue"><span class="speaker">Messiah</span>"Not all good acts are born from goodness. Sometimes even killing is done in the name of good. The Father placed His trust in you… and never stopped your judgment."</div>
+<p><em>He turned slightly, smiling.</em></p>
+<div class="dialogue"><span class="speaker">Messiah</span>"Do as you see fit, friend. I still have faith in you."</div>
+<p>Gabriel did not respond. Instead — he rose… and descended into the void.</p>
+</div>`
+  },
+  {
+    nav: "IX · Murder",
+    part: "Part 304 — Part Two",
+    title: "Murder",
+    content: `
+<div class="body-text">
+<p>From the sky, Gabriel looked down upon Heaven. Below him, the other angels were not at rest… nor in duty. They were armed. They were moving toward her. The woman. Their intent was clear — to kill her.</p>
+<p>She ran. But there was nowhere left in creation for her to hide. Spear after spear tore through the air — until a star fell from the heavens.</p>
+<p>And from its light… Gabriel descended.</p>
+<p>He stood before her. The right hand of the Father.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"Is this your salvation? By killing a woman?"</div>
+<div class="dialogue"><span class="speaker">Samael</span>"Move."</div>
+<p>Gabriel did not step aside. His gaze shifted across them — Michael, Samael, Metatron, Seraphim… and the armies behind them.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"The Father's command is simple. Do not kill her."</div>
+<div class="dialogue"><span class="speaker">Metatron</span>"You are lying. The Father's voice has been silent since the birth of Hell. He does not speak to save sinners — only to end them. We are doing His work."</div>
+<div class="dialogue"><span class="speaker">Gabriel</span><em>(voice trembling)</em> "Then what is the difference between you… and Lucifer? If this is your definition of salvation, then you all deserve the Father's judgment."</div>
+<p>He drew his weapon.</p>
+<p>And in that moment — the strongest angel after Lucifer stood against Heaven itself.</p>
+<p>The war began. A battle that tore through Heaven, and shook even Hell beneath it. Days passed.</p>
+<p>When it ended… hundreds of angels lay broken across the skies — not dead… but unable to rise.</p>
+<p>Only five remained standing. Gabriel — the fire-born woman behind him — and on the other side: Samael, Metatron, Seraphim, and Michael.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span><em>(laughing)</em> "Is that the best you can get?! …you need… more power."</div>
+<p>The remaining angels hesitated — then lifted their weapons as one. Their light merged, becoming something vast… and blinding. A single, divine force — aimed at Gabriel. Gabriel did not move.</p>
+<div class="dialogue"><span class="speaker">Gabriel</span>"Then I will show you… divine justice!"</div>
+<p>He answered with light of his own — brighter, sharper, absolute. Two forces. Two truths. About to collide.</p>
+<p>And then — someone stepped between them.</p>
+<p>Messiah.</p>
+<p>The light struck. All of it. Silence followed. The radiance faded… and he fell. Blood touched the ground of Heaven. His wings… turned to dust.</p>
+<p>Messiah lay broken upon the ground. The dust of his wings drifted through Heaven — like the remains of something sacred… undone.</p>
+<p>No one moved. Not Gabriel. Not Michael. Not even Samael. For the first time — Heaven was silent.</p>
+<p>The woman born of fire stood still — shocked. Then the shock turned into anger. And the anger… became fire. Heaven felt it. Hell felt it. Heat spread across existence itself — not like flame, but like something far older. A fire unlike any known to creation.</p>
+<p>Then — the Throne trembled. Not with rage. With presence.</p>
+<p>Light did not fall. It descended. Not as fire — but as something older. Heavier. Absolute.</p>
+<p>The Father had moved. And all of creation felt it. The void froze. Hell went still. Time itself bent inward — as if afraid to continue.</p>
+<p>A voice followed. Not heard — but known.</p>
+<div class="decree">"Enough."</div>
+<p>The word alone shattered what remained of the sky. Gabriel fell to one knee. The others followed. Even those who still stood… could not remain standing.</p>
+<div class="decree">"You speak of My will, yet you act without it. You name judgment… without understanding it. You sought salvation through destruction. You sought truth through defiance. You sought Me… in your own voices.<br><br>So you will learn."</div>
+<p>The heavens split open. Not broken — divided. Light and fire tore apart from one another. The woman of fire was lifted — untouched. Gabriel could not reach her. None of them could.</p>
+<div class="decree">"Judgment is not yours to carry. Nor is creation yours to correct.<br><br>Let Heaven remember doubt.<br>Let Hell remember pride."</div>
+</div>`
+  },
+  {
+    nav: "X · Satanail",
+    part: "Part Six Hundred Sixty-Six",
+    title: "Satanail",
+    content: `
+<div class="body-text">
+<p>In the deepest layer of Hell, Lucifer sat upon a fractured stone. The flames around him did not burn — they bowed.</p>
+<p>Then the air shifted. A presence entered Hell that did not belong to it. Lucifer smiled faintly.</p>
+<div class="dialogue"><span class="speaker">Lucifer</span>"Welcome… to my humble kingdom. Satanail."</div>
+<p>She stood before him — her face still, untouched by fear or pride.</p>
+<div class="dialogue"><span class="speaker">Satanail</span>"Burned Morning Star. Congratulations. Your rebellion against the Father… was a success. You lost your form. Your throne. Your place. But you won the war."</div>
+<div class="dialogue"><span class="speaker">Lucifer</span>"If this is victory… then you misunderstand why I fought."</div>
+<p><em>Silence lingered between them. The fires of Hell dimmed, listening.</em></p>
+<div class="dialogue"><span class="speaker">Lucifer</span>"You carry knowledge that even the Father did not grant me. Something hidden… even from Heaven. Tell me, Satanail — what is it you are fighting for?"</div>
+<p>For the first time… she hesitated. A quiet breath escaped her.</p>
+<div class="dialogue"><span class="speaker">Satanail</span>"A new beginning."</div>
+
+<div style="margin-top:3rem;padding-top:2rem;border-top:0.5px solid var(--color-border-tertiary)">
+<p class="part-label" style="margin-bottom:1rem">The Creation Quaternary</p>
+<div class="rule-box">
+  <div class="row"><span class="name">Metatron</span><span class="desc">Is Heaven and Hell</span></div>
+  <div class="row"><span class="name">Samael</span><span class="desc">Is Death</span></div>
+  <div class="row"><span class="name">Seraphim</span><span class="desc">Created time, matter, and balance</span></div>
+  <div class="row"><span class="name">Michael</span><span class="desc">Is the Dragon</span></div>
+</div>
+</div>
+</div>`
+  }
+];
+
+
+
+let cur = 0;
+
+function render(){
+  const ch = chapters[cur];
+  document.getElementById('chapterArea').innerHTML = `
+    <div class="part-label">${ch.part}</div>
+    <h2 class="ch-title">${ch.title}</h2>
+    ${ch.content}
+    <div class="footer-nav">
+      <button class="footer-btn" id="prevBtn" ${cur===0?'disabled':''} onclick="go(cur-1)">← Prev</button>
+      <span class="ch-counter">CHAPTER ${cur+1} OF ${chapters.length}</span>
+      <button class="footer-btn" id="nextBtn" ${cur===chapters.length-1?'disabled':''} onclick="go(cur+1)">Next →</button>
+    </div>`;
+  
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>{
+    b.classList.toggle('active', i===cur);
+  });
+  window.scrollTo({top:0, behavior: 'smooth'});
+}
+
+function go(i){
+  cur = Math.max(0, Math.min(chapters.length-1, i));
+  render();
+}
+
+// Init Nav Buttons
+const nb = document.getElementById('navBtns');
+chapters.forEach((ch,i)=>{
+  const b = document.createElement('button');
+  b.className='nav-btn';
+  b.textContent = ch.nav;
+  b.onclick = () => go(i);
+  nb.appendChild(b);
+});
+
+render();
+
+// Initialize Particles
+document.addEventListener('DOMContentLoaded', () => {
+    if(typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 40 },
+                "color": { "value": "#ff0000" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "move": { "enable": true, "speed": 1, "direction": "top", "out_mode": "out" }
+            },
+            "interactivity": { "events": { "onhover": { "enable": false }, "onclick": { "enable": false } } },
+            "retina_detect": true
+        });
+    }
+});
+</script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GABRIEL — Character Profile</title>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="gabriel">
+<!-- PRELOADER -->
+<div id="page-loader" class="page-loader">
+  <div class="loader-content">
+    <h2 class="loader-text">UNSEALING</h2>
+  </div>
+</div>
+
+<!-- PERMANENT NOTE -->
+<div class="permanent-note">An Archangel operating on cold bureaucracy.</div>
+
+<div class="scroll-progress-bar" id="scroll-progress"></div>
+
+<!-- CINEMATIC INTRO -->
+<div id="cinematic-intro" class="cinematic-intro">
+  <div class="intro-line"></div>
+  <h1 class="intro-title">Gabriel</h1>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="custom-cursor" class="custom-cursor"></div>
+
+<!-- SECRET GLITCH OVERLAY -->
+<div id="secret-lore" class="secret-overlay">
+  <div class="secret-text">
+    <p>ERROR 404: RECORD EXPUNGED.</p>
+    <p>JABRIAL IS NOT A GOD.</p>
+    <p>HE IS THE CAGE.</p>
+  </div>
+</div>
+
+<!-- BLOOD CANVAS -->
+<canvas id="blood-canvas" class="blood-canvas"></canvas>
+
+<div id="particles-js"></div>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="nav" id="nav">
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav__menu" id="nav-menu">
+  <a href="#identity" class="nav__link">Identity</a>
+  <a href="#the-tree" class="nav__link">The Tree</a>
+  <a href="#history" class="nav__link">History</a>
+  <a href="#adham" class="nav__link">Connections</a>
+</div>
+  
+  <input type="text" id="lore-search" class="nav__search" placeholder="Search Lore..." autocomplete="off">
+  
+  <button class="nav__audio-toggle" id="decode-toggle" aria-label="Decode Runes" title="Decode Language">
+    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+  </button>
+  <button class="nav__audio-toggle" id="audio-toggle" aria-label="Toggle Audio"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg></button>
+  <button class="nav__theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+    <svg viewBox="0 0 24 24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18.75a.75.75 0 01.75.75V21.75a.75.75 0 01-1.5 0V19.5a.75.75 0 01.75-.75zM6.166 17.834a.75.75 0 001.06 1.06l1.591-1.59a.75.75 0 10-1.06-1.061l-1.591 1.59zM4.5 12a.75.75 0 01-.75.75H1.5a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM6.166 6.166a.75.75 0 001.06 1.06L5.636 8.816A.75.75 0 104.576 7.755l1.59-1.589z" /></svg>
+  </button>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero__star"></div>
+  <h1 class="hero__title">GABRIEL</h1>
+  <p class="hero__subtitle">"The Right Hand of the Father"</p>
+  <div class="hero__line"></div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-hint__arrow"></div>
+  </div>
+</header>
+
+<!-- ═══════════ CONTENT ═══════════ -->
+<main class="content">\n
+  <section class="section" id="identity">
+    <h2 class="section__label">Identity</h2>
+    <div class="id-grid bento-grid">
+      <div class="id-card">
+        <div class="id-card__label">Codename</div>
+        <div class="id-card__value">Gabriel</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Real Name</div>
+        <div class="id-card__value">Unknown</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Race</div>
+        <div class="id-card__value">Archangel</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Role</div>
+        <div class="id-card__value">The Right Hand of the Father</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Status</div>
+        <div class="id-card__value">Active.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <section class="section" id="the-tree">
+    <h2 class="section__label">The Background</h2>
+    <div class="narrative">
+      <h3 class="narrative__title">Origin</h3>
+      <p class="narrative__text">Gabriel is a high-ranking Archangel, tasked with enforcing the will of a God that has seemingly abandoned the universe.</p>
+      <p class="narrative__text">Operating entirely on a rigid, bureaucratic interpretation of divine law, Gabriel is devoid of human empathy, carrying out planetary wipes without a second thought.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <section class="section" id="history">
+    <h2 class="section__label">History & Actions</h2>
+    <div class="appear-grid bento-grid">
+      <div class="appear-item">
+        <span class="appear-tag">The Connection</span>
+        <span class="appear-desc">Adham clashed directly with the Archangel's forces when Jabrial (a subordinate) attempted to wipe Linksia's village. Gabriel views Adham as a glitch in the cosmic order.</span>
+      </div>
+      <div class="appear-item">
+        <span class="appear-tag">The Future</span>
+        <span class="appear-desc">Their fate remains deeply tied to the survival of the universe and the actions of the last Emperor.</span>
+      </div>
+      <div class="appear-item">
+        <span class="appear-tag">The Power</span>
+        <span class="appear-desc">A being possessing profound capabilities that transcend ordinary comprehension, standing as a pivotal piece in the cosmic war.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <section class="section" id="adham">
+    <h2 class="section__label">The Successor</h2>
+    <div class="narrative">
+      <h3 class="narrative__title">Adham - The Last Emperor</h3>
+      <p class="narrative__text">With the Tree burned, Adham is now the only place that knowledge can ever exist again — if he ever unlocks what he is. Gabriel's legacy rests entirely inside an assassin who doesn't know he's carrying it.</p>
+      <p class="narrative__text"><a href="adham.html" style="color: var(--accent-primary); text-decoration: underline;">Return to Adham's Profile</a></p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+</main>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+
+<script src="app.js"></script>
+
+<!-- MODAL -->
+<dialog class="modal" id="modal">
+  <div class="modal__content">
+    <button class="modal__close" aria-label="Close Modal">✕</button>
+    <div class="modal__body"></div>
+  </div>
+</dialog>
+
+</body>
+</html>

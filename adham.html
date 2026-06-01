@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE HAND — Character Profile</title>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- PRELOADER -->
+<div id="page-loader" class="page-loader">
+  <div class="loader-content">
+    <h2 class="loader-text">UNSEALING</h2>
+  </div>
+</div>
+
+<!-- PERMANENT NOTE -->
+<div class="permanent-note">He doesn't fight to win. He fights because stopping hurts more.</div>
+
+<div class="scroll-progress-bar" id="scroll-progress"></div>
+
+<!-- CINEMATIC INTRO -->
+<div id="cinematic-intro" class="cinematic-intro">
+  <div class="intro-line"></div>
+  <h1 class="intro-title">The Hand</h1>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="custom-cursor" class="custom-cursor"></div>
+
+<!-- SECRET GLITCH OVERLAY -->
+<div id="secret-lore" class="secret-overlay">
+  <div class="secret-text">
+    <p>ERROR 404: RECORD EXPUNGED.</p>
+    <p>JABRIAL IS NOT A GOD.</p>
+    <p>HE IS THE CAGE.</p>
+  </div>
+</div>
+
+<!-- BLOOD CANVAS -->
+<canvas id="blood-canvas" class="blood-canvas"></canvas>
+
+<div id="particles-js"></div>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="nav" id="nav">
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav__menu" id="nav-menu">
+  <a href="#identity" class="nav__link">Identity</a>
+  <a href="#appearance" class="nav__link">Appearance</a>
+  <a href="#origin" class="nav__link">Origin</a>
+  <a href="#emperors" class="nav__link">Emperors</a>
+  <a href="#wipe" class="nav__link">The Wipe</a>
+  <a href="#powers" class="nav__link">Powers</a>
+  <a href="#characters" class="nav__link">Characters</a>
+  <a href="#nine" class="nav__link">The Nine</a>
+  <a href="#backstory" class="nav__link">Backstory</a>
+  <a href="#gods" class="nav__link">Gods</a>
+  <a href="#truth" class="nav__link">Hidden Truth</a>
+  </div>
+  
+  <input type="text" id="lore-search" class="nav__search" placeholder="Search Lore..." autocomplete="off">
+  
+  <button class="nav__audio-toggle" id="decode-toggle" aria-label="Decode Runes" title="Decode Language">
+    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+  </button>
+  <button class="nav__audio-toggle" id="audio-toggle" aria-label="Toggle Audio"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg></button>
+  <button class="nav__theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+    <svg viewBox="0 0 24 24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18.75a.75.75 0 01.75.75V21.75a.75.75 0 01-1.5 0V19.5a.75.75 0 01.75-.75zM6.166 17.834a.75.75 0 001.06 1.06l1.591-1.59a.75.75 0 10-1.06-1.061l-1.591 1.59zM4.5 12a.75.75 0 01-.75.75H1.5a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM6.166 6.166a.75.75 0 001.06 1.06L5.636 8.816A.75.75 0 104.576 7.755l1.59-1.589z" /></svg>
+  </button>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero__star"></div>
+  <h1 class="hero__title">THE HAND</h1>
+  <p class="hero__subtitle">"He doesn't fight to win. He fights because stopping hurts more."</p>
+  <div class="hero__line"></div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-hint__arrow"></div>
+  </div>
+</header>
+
+<!-- ═══════════ CONTENT ═══════════ -->
+<main class="content">
+
+  <section class="section" id="identity">
+    <h2 class="section__label">Identity</h2>
+    <div class="id-grid bento-grid">
+      <div class="id-card">
+        <div class="id-card__label">Codename</div>
+        <div class="id-card__value">The Hand</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Real Name</div>
+        <div class="id-card__value">Adham El-Sayed</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Race</div>
+        <div class="id-card__value">Muqadas (extinct)</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Origin</div>
+        <div class="id-card__value">Earth — Egypt</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Age</div>
+        <div class="id-card__value">Mid-20s physically. Billions of subjective years through multi-universe training. Was sixteen when his family died.</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Occupation</div>
+        <div class="id-card__value">Mercenary. Accepts payment without sentiment.</div>
+      </div>
+      <div class="id-card">
+        <div class="id-card__label">Status</div>
+        <div class="id-card__value">Active — currently displaced in the Refugee Universe</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <section class="section" id="appearance">
+    <h2 class="section__label">Appearance</h2>
+    <div class="appear-grid bento-grid">
+      <div class="appear-item">
+        <span class="appear-tag">Hair</span>
+        <span class="appear-desc">Deep blue with orange highlights — not dyed, just his natural hair.</span>
+      </div>
+      <div class="appear-item">
+        <span class="appear-tag">Eyes</span>
+        <span class="appear-desc">Amber-gold, glowing. Scales with emotional or power state — a quiet Adham has a low steady burn. An activated Adham has eyes like lit coals.</span>
+      </div>
+      <div class="appear-item">
+        <span class="appear-tag">Glasses</span>
+        <span class="appear-desc">Thin, rectangular, silver-framed. Sitting low on his nose.</span>
+      </div>
+      <div class="appear-item">
+        <span class="appear-tag">The Glitch</span>
+        <span class="appear-desc">A small four-pointed star mark below his left eye — the entry point of Seraph's wish arrow. The arrow was designed to kill and reborn its target. It hit an immortal Emperor. The death could not complete. The rebirth could not trigger. Digital distortion crawls upward from the mark, fragmenting vision on that side with light artifacts and circuit-like interference.</span>
+      </div>
+      <div class="appear-item">
+        <span class="appear-tag">Build</span>
+        <span class="appear-desc">Lean and composed. Not someone who looks dangerous until he is.</span>
+      </div>
+      <div class="appear-item">
+        <span class="appear-tag">Combat</span>
+        <span class="appear-desc">Black tactical vest over a black turtleneck. The golden hands — glowing manifestations of his inherited <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> arms — emerge from behind him when his power activates, surrounding him in a ring of reaching light belonging to a trillion dead.</span>
+      </div>
+      <div class="appear-item">
+        <span class="appear-tag">Casual</span>
+        <span class="appear-desc">Black turtleneck or sweater. Same glasses. Looks like someone you'd pass on the street and forget until you remembered the eyes.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- ORIGIN -->
+  <section class="section" id="origin">
+    <h2 class="section__label">The First Emperor</h2>
+    <div class="narrative narrative--classified">
+  <h3 class="narrative__title">The Drinker of Rain. The Golden Rain.</h3>
+      <p class="narrative__text">Before the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> were the Muqadas, there was a man. His name is not recorded anywhere that still exists. He was the first of his people — not a spacefaring civilization yet, just a planet running out of everything. He was extraordinarily intelligent, possessed a will that no one around him could fully explain, and under his leadership his people reached heights no other civilization in their region of existence had touched.</p>
+      <p class="narrative__text">Then the resources ran out.</p>
+      <p class="narrative__text">He spent one hundred years walking — crossing dead worlds, empty systems, the cold between stars — looking for something that could save what remained of his people. He found nothing. One by one, they died. All of them. By the time he reached the very last second of his own life, his brain already failing, his body already going, he was completely alone.</p>
+      <p class="narrative__text">And then he looked up.</p>
+      <p class="narrative__text">What he saw has no name. It should not have been visible to any living thing. In that final fraction of a second — with his mind breaking down, all filters gone, all limits dissolved — the universe opened. Every piece of information that had ever existed, was existing, or would ever exist flooded into him simultaneously. The complete record of all things, in an instant.</p>
+      <p class="narrative__text">He did not die. Instead — he made a chant. The words came from somewhere deeper than thought, shaped by everything he had just seen. The chant made him immortal. Not gifted immortality, not inherited — <em>made.</em> He wrote the rules of his own existence into the fabric of what is.</p>
+      <p class="narrative__text">He came back. He rebuilt. He created the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> — the hand system, the Number inheritance, all of it — from the knowledge of what he had seen. He built the Tree to hold that knowledge, passing it from Emperor to Emperor so it would never be lost again.</p>
+    </div>
+
+    <div class="narrative">
+  <h3 class="narrative__title">What He Saw — And What It Cost</h3>
+      <p class="narrative__text">Whatever he saw that day was not meant to be seen. A god — unnamed, nature and origin unknown — noticed. And it decided that what he knew had to be destroyed. Not him, not his people. The <em>information.</em> The knowledge stored in the Tree.</p>
+      <p class="narrative__text">The Wipe was not random. The faction wars, the bio-weapons, the cascading disasters — they were the visible layer. Underneath all of it was a single directive: destroy the Muqadas, destroy the Tree, destroy what the first Emperor saw. The last move in that campaign was a messenger who found <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> and told him to burn the Tree.</p>
+    </div>
+
+    <div class="narrative">
+  <h3 class="narrative__title">The Rebirth — And The Empty Vessel</h3>
+      <p class="narrative__text">Adham is the first Emperor, reborn. That is why he was born with more than one hand — the race's own system, built by the first Emperor himself, identified him when he arrived. The Numbers moved toward him not by chance but by something written into the design from the beginning.</p>
+      <p class="narrative__text">He does not know any of this.</p>
+      <p class="narrative__text">The first Emperor stored everything he knew in the Tree — every memory, every truth, every fragment of what he saw at the edge of death. <span class="lore-term" data-tooltip="A massive, golden archive that stored the knowledge of every <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> Emperor across time.">The Tree</span> burned. The memories burned with it. Adham carries the soul of the first Emperor and none of his knowledge. He is the vessel without the contents. The crown without the history.</p>
+      <p class="narrative__text">The god that sent the messenger does not know Adham exists. It believes the information is gone. It believes it won.</p>
+    </div>
+
+    <div class="prophecy">
+      <p class="narrative__text"><em>"Rest, my child, as you are the beginning and the end.<br>
+      As you will regain what's lost, you will remember who you are.<br>
+      The Emperor must rule.<br>
+      The first one is back and will be forever."</em></p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- EMPERORS -->
+  <section class="section" id="emperors">
+    <h2 class="section__label">The Five Great Emperors</h2>
+    <p >The <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> Empire spanned a trillion lives and an age beyond counting. Of all the Emperors who ever ruled, five stand above the rest — not by power alone, but by what they left behind.</p>
+
+    <div class="emperor-timeline">
+      <div class="emperor-card">
+        <div class="emperor-card__title">The First — The One Who Saw</div>
+        <div class="emperor-card__sub">Above classification. The origin of everything.</div>
+        <p class="narrative__text">He is not counted among the four great Emperors — he is above them. He is the beginning. Before the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> existed, before the hand system, before Golden Blood, before the Tree — there was one man on a dying planet who walked for a hundred years and looked up at the wrong moment. The universe opened. He survived it. He built everything that came after.</p>
+      </div>
+      <div class="emperor-card">
+        <div class="emperor-card__title">The First Great Emperor — The Golden Rain</div>
+        <div class="emperor-card__sub">Received the Golden Blood</div>
+        <a href="the-first-emperor.html" style="display:block; margin-top: 10px; margin-bottom: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+        <p class="narrative__text">No rain fell for four hundred years. The civilization prayed without answer for four centuries. Then a golden rain came from the sky — one drop landed in the Emperor's cup. He drank it. <span class="lore-term" data-tooltip="A legendary, exponentially scaling power system born from a single drop of golden rain.">Golden Blood</span> entered the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> bloodline from that moment forward. Every act of healing, every regeneration, every pull toward good that any <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> ever felt traces back to this Emperor and the drop in his cup.</p>
+      </div>
+      <div class="emperor-card">
+        <div class="emperor-card__title">The Second Great Emperor — The Golden Age</div>
+        <div class="emperor-card__sub">Peak of technological advancement</div>
+        <a href="the-second-emperor.html" style="display:block; margin-top: 10px; margin-bottom: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+        <p class="narrative__text">Under the second great Emperor, the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> reached the highest point of technological advancement in their history — surpassing anything any other civilization in their known universe had achieved. This was the peak. Everything after was maintenance of what he built, and everything before was preparation for it.</p>
+      </div>
+      <div class="emperor-card">
+        <div class="emperor-card__title">The Third Great Emperor — The Builder of Trees</div>
+        <div class="emperor-card__sub">The Builder of Trees</div>
+        <a href="the-tree-maker.html" style="display:block; margin-top: 10px; margin-bottom: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+        <p class="narrative__text">The third great Emperor built the Trees — the golden, glowing archives that stored the accumulated knowledge of every Emperor who came before. He took the first Emperor's vision, the Golden Age's discoveries, and everything the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> had ever learned, and gave it a permanent home. When <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> burned the Tree, he burned the culmination of this Emperor's life's work.</p>
+      </div>
+      <div class="emperor-card">
+        <div class="emperor-card__title">The Fourth Great Emperor — The Summon</div>
+        <div class="emperor-card__sub">Creator of the god-killing weapon</div>
+        <a href="the-fourth-emperor.html" style="display:block; margin-top: 10px; margin-bottom: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+        <p class="narrative__text">The fourth great Emperor created the Emperor's Summon — the weapon capable of killing gods, passed in secret from Emperor to Emperor, never written down. He created it as the ultimate safeguard for the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> people. He was right about the power. He was wrong about the control. The last Emperor who used it destroyed his own people with it. He built a shield. What it became was something else.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- THE MUQADAS SYSTEM -->
+  <section class="section">
+    <h2 class="section__label">The Muqadas</h2>
+    <div class="narrative">
+      <p class="narrative__text">The <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> were an ancient spacefaring race built around a single religious truth: their god reached down and assigned each of them one of his one trillion hands. Every <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> was born with a <strong>Number</strong> — from 1 to 1,000,000,000,000 — and a unique power tied to that number.</p>
+      <p class="narrative__text">When a <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> dies, their Number passes to a <strong>random</strong> living member of the race, along with an additional hand. No choosing, no bloodline, no destiny. The hands fall where they fall. The one with the most hands becomes <strong>Emperor</strong> — a title carrying a divine lock: <strong>immortality</strong>. The Emperor cannot die.</p>
+      <p class="narrative__text">Except Adham. There is no one left to be born. There is no one left to die and scatter their hands elsewhere. Every Number has drifted to him, and the tide has nowhere left to go.</p>
+    </div>
+    <div class="narrative">
+  <h3 class="narrative__title">Adham's Birth — Destined Emperor</h3>
+      <p class="narrative__text">When Adham was born, something unprecedented happened. For the first time in <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> history, a newborn took more than one hand at birth — pulling the consolidated 999,999,999,996 extinct Numbers that had naturally funneled into his surviving family members during the Wipe. His parents knew immediately: he was destined to be Emperor. Not by chance — written into the race's design from the beginning. They said nothing. He was a child, in hiding. They would tell him at twenty, as tradition demanded. They ran out of time.</p>
+    </div>
+    <div class="narrative">
+  <h3 class="narrative__title">What Adham Doesn't Know</h3>
+      <p class="narrative__text">He is the last <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> alive. He was always going to be Emperor. His birth announced it. The Emperor is immortal. He has been dying and surviving for years and assumes he is simply lucky.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- THE WIPE -->
+  <section class="section" id="wipe">
+    <h2 class="section__label">The Wipe</h2>
+    <div class="narrative">
+      <p class="narrative__text">A trillion people don't die from one thing. They die from everything going wrong at once.</p>
+      <p class="narrative__text">When the Tree's mission became known — a cosmic force intending to give every universe a genuine chance at a better life — not everyone welcomed it. Beneath the visible wars and bio-weapons was a single directive from an unnamed god: destroy the Muqadas, destroy the Tree, destroy what the first Emperor saw.</p>
+      <p class="narrative__text">The decisive blow was biological: weapons engineered specifically around <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> physiology, spreading in waves through a civilization already destabilized by conflict. A cure was developed and never distributed. A ceasefire collapsed days before a critical resupply. A migration of survivors reached a contaminated system.</p>
+      <p class="narrative__text">Not conspiracy on the surface. Just the universe failing to leave enough space between disasters for anyone to breathe. But underneath — a god was running the board.</p>
+      <p class="narrative__text">Of a trillion people, four survived. A family — mother, father, brother, and sister. They fled to Earth and settled in Egypt. Adham was born there. They tried to give him something ordinary before they could give him the truth. They ran out of time for the truth.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- POWERS -->
+  <section class="section" id="powers">
+    <h2 class="section__label">Powers & Abilities</h2>
+    <p >Adham's full power set is theoretically limitless — one trillion unique abilities inherited from a dead race. He operates on instinct. He is an ocean who thinks he's a glass of water.</p>
+
+    <!-- Fighting Style -->
+    <div class="narrative" >
+  <h3 class="narrative__title">Fighting Style</h3>
+      <p class="narrative__text">Adham doesn't rush. He doesn't need to. He's immortal — and he uses that fact like a weapon. His approach to combat is built on a single principle: <em>let them show you everything first.</em></p>
+      <p class="narrative__text">He takes hits. Studies them. Reads your rhythm, your tells, the way you shift weight before a swing. He watches the way a scientist watches — cataloguing every move you make while his body absorbs punishment that would end anyone else. He is patient in a way that becomes terrifying once you realize what the patience is for.</p>
+      <p class="narrative__text">Then he hits back. Your own moves, returned with perfect form — or his own style, built specifically to counter everything you just showed him. Every fight is a study session where he is the student and the exam at the same time. By the time he starts fighting back, he already knows how it ends.</p>
+    </div>
+
+    <div class="power-grid">
+      <div class="power-card">
+        <div class="power-card__name">The Signature Hand</div>
+        <div class="power-card__desc">
+          <p class="narrative__text">If he takes a hit from any attack and survives, he can replicate that exact attack once — same type, same power level. He thinks of it as his only real ability. It is one of a trillion.</p>
+          <ul>
+            <li>Can only hold one replicated attack at a time — absorbing a new one overwrites the previous</li>
+          </ul>
+        </div>
+      </div>
+      <div class="power-card">
+        <div class="power-card__name">The Hands</div>
+        <div class="power-card__desc">
+          <p class="narrative__text">Multiple additional arms, each capable of independent movement. In combat rarely uses more than four to six. Has never pushed to see how many he can summon. The number would disturb him.</p>
+        </div>
+      </div>
+      <div class="power-card">
+        <div class="power-card__name">Physical Amplification</div>
+        <div class="power-card__desc">
+          <p class="narrative__text">Strength, speed, durability far beyond human limits. Residual powers surface in extreme stress or emotion — a Number bleeds through that he's never consciously accessed. Unpredictable and sometimes catastrophic.</p>
+        </div>
+      </div>
+      <div class="power-card">
+        <div class="power-card__name">Immortality</div>
+        <div class="power-card__desc">
+          <p class="narrative__text">Does not age. Wounds heal. Has been killed more than once. Always wakes up. He calls it luck.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <span class="lore-term" data-tooltip="A legendary, exponentially scaling power system born from a single drop of golden rain.">Golden Blood</span> -->
+    <div >
+      <h3 >Golden Blood</h3>
+      <div class="narrative">
+        <p class="narrative__text">There was a period in <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> history where no rain fell for four hundred years. The entire civilization prayed for four centuries without answer. Then a golden rain fell from the sky. One drop landed in the Emperor's cup. He drank it. From that moment, <span class="lore-term" data-tooltip="A legendary, exponentially scaling power system born from a single drop of golden rain.">Golden Blood</span> ran in his veins — passed through generations, becoming the foundation of <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> biology.</p>
+        <p class="narrative__text">Runs in Acts 1 through 100, scaling exponentially. Each new tier is categorically different from the last. The passive side amplifies all stats. The active side unlocks creation and regeneration abilities. <span class="lore-term" data-tooltip="A legendary, exponentially scaling power system born from a single drop of golden rain.">Golden Blood</span> cannot be weaponized to harm directly. The deeper someone goes into its Acts, the stronger their biological pull toward doing good becomes. Not compulsion — pressure.</p>
+      </div>
+
+      <table class="gb-table">
+        <thead>
+          <tr><th>Acts</th><th>Passive</th><th>Active</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1–5</td><td>General amplification</td><td>Immunity to sickness, disease, poison</td></tr>
+          <tr><td>6–10</td><td>Enhanced</td><td>Create small helpful organisms</td></tr>
+          <tr><td>11–15</td><td>Enhanced</td><td>Previous tier at greater scale</td></tr>
+          <tr><td>16–20</td><td>Enhanced</td><td>Create any non-living, non-complex matter</td></tr>
+          <tr><td>21–25</td><td>Enhanced</td><td>Previous tier at greater scale</td></tr>
+          <tr><td>26–30</td><td>Enhanced</td><td>Regenerate damaged or missing organs</td></tr>
+          <tr><td>31–35</td><td>Enhanced</td><td>Previous tier at greater scale</td></tr>
+          <tr><td>36–95</td><td>Continues escalating…</td><td>Continues escalating…</td></tr>
+          <tr><td>96–100</td><td>Peak amplification</td><td>Full body regeneration; create anything causing no harm</td></tr>
+          <tr class="act-101"><td>101</td><td>Unique</td><td>Unique</td></tr>
+        </tbody>
+      </table>
+
+      <div class="narrative">
+  <h3 class="narrative__title">Act 101 — The Threshold</h3>
+        <p class="narrative__text">Unlocked only at the edge of death, only when the person is genuinely willing to give everything for someone else — not survival, not revenge. Emotional condition, not physical. Every Act 101 is unique to the person.</p>
+        <p class="narrative__text">Adham has used Act 101 at least once before during his multi-universe travels. The memory was lost when the rebirth arrow glitched his existence.</p>
+      </div>
+      <div class="narrative">
+  <h3 class="narrative__title">Adham's Act 101 — "The Last Emperor"</h3>
+        <p class="narrative__text">He becomes a temporary conduit for every <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> who ever lived. The trillion dead speak through him — as pure restoration. He can fully heal or pull back from death's edge any number of people simultaneously. He cannot use it on himself. He cannot weaponize it. The cost: burns as close to empty as his body allows. Wakes up days later with nothing left. Cooldown: one use every 100 years.</p>
+        <p class="narrative__text">The man who killed 1.5 billion people has a transcendence ability that exclusively saves lives — he bypassed the <span class="lore-term" data-tooltip="A legendary, exponentially scaling power system born from a single drop of golden rain.">Golden Blood</span> pull through overwhelming grief and a genuine belief, however distorted, that he was sparing those people from suffering.</p>
+      </div>
+    </div>
+
+    <!-- <span class="lore-term" data-tooltip="The reverse-engineered dark mirror of Golden Blood, created by Lezmyon.">Chaos Blood</span> -->
+    <div >
+      <h3 >Chaos Blood</h3>
+      <div class="narrative">
+        <p class="narrative__text">Same 101 Acts, same scaling, same healing speed — everything else a mirror flipped into darkness. Heals by destroying: every cell burns and dies like cancer, replaced by new cancerous cells. Always regenerating, always in pain. Where <span class="lore-term" data-tooltip="A legendary, exponentially scaling power system born from a single drop of golden rain.">Golden Blood</span> creates, <span class="lore-term" data-tooltip="The reverse-engineered dark mirror of Golden Blood, created by Lezmyon.">Chaos Blood</span> destroys at identical scale and precision. The deeper someone progresses, the stronger their pull toward destruction becomes. Reverse-engineered by <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> from studying Golden Blood.</p>
+      </div>
+    </div>
+
+    <!-- Emperor's Summon -->
+    <div >
+      <h3 >The Emperor's Summon</h3>
+      <div class="narrative narrative--classified">
+        <p class="narrative__text">Every Emperor of the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> carried one secret that was never written down, never spoken aloud, never passed through the inheritance system. Adham has never been told. He does not know it exists.</p>
+        <p class="narrative__text">The summon is a being — or a force wearing the shape of one — that exists outside the normal hierarchy of power. Gods can be killed by it. It is the single most destructive thing the <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> ever had access to.</p>
+        <p class="narrative__text">When it became clear the race was going to lose, the Emperor summoned it. It cannot be controlled — this was always known. He summoned it anyway. It destroyed their enemies. It also destroyed the Muqadas. The four survivors escaped only because they were already gone before it reached them.</p>
+      </div>
+      <div class="chant-block">
+        <span class="chant-line chant-ar">أنا الأخير — أنا الأول</span>
+        <span class="chant-line chant-en">(I am the last. I am the first.)</span>
+        <span class="chant-line chant-ar">من يحمل الألف المليار</span>
+        <span class="chant-line chant-en">(The one who carries the trillion.)</span>
+        <span class="chant-line chant-ar">أنا لا أستدعيك بالقوة</span>
+        <span class="chant-line chant-en">(I do not call you with power.)</span>
+        <span class="chant-line chant-ar">أنا أستدعيك بالحق</span>
+        <span class="chant-line chant-en">(I call you with right.)</span>
+        <span class="chant-line chant-ar">الحق الذي ورثته من الموتى</span>
+        <span class="chant-line chant-en">(The right inherited from the dead.)</span>
+        <span class="chant-line chant-ar" >اخرج.</span>
+        <span class="chant-line chant-en">(Come out.)</span>
+        <p >The last word is the only one said at full voice. Everything before it is a whisper.<br>It only responds to something that sounds like it has nothing left to lose.</p>
+      </div>
+    </div>
+
+    <!-- The 1T Ceiling -->
+    <div >
+      <div class="narrative">
+  <h3 class="narrative__title">The 1T Ceiling</h3>
+        <p class="narrative__text">The day he learns the truth of his race, his Number system, and his title — that is the day the ceiling disappears. He is currently the only place the accumulated knowledge of every <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> Emperor can exist. <span class="lore-term" data-tooltip="A massive, golden archive that stored the knowledge of every <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> Emperor across time.">The Tree</span> is burned. He is the last backup. And somewhere beneath the billion years of travel and grief, the first Emperor's memories are still in there — waiting.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- CHARACTERS -->
+  <section class="section" id="characters">
+    <h2 class="section__label">Characters</h2>
+
+    <!-- FIE -->
+    <div class="char-profile" data-rel="ally">
+      <div class="char-profile__header">
+        
+        <span class="char-profile__name">Fie</span>
+        <span class="char-profile__role">The Wife <span class="rel-tag rel-enemy">Betrayer</span></span>
+        <a href="fie.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">She was the first person Adham met in the assassin universe who talked to him like he was just a person. Not a weapon, not a rumor. Just a person who looked tired and was bad at small talk. No powers. Didn't know what he was.</p>
+      <p class="char-profile__text">What she had was steadiness. She remembered small things. She had opinions about music and shared them without being asked. She laughed at the wrong moments in films and didn't apologize for it. She made the apartment feel like somewhere worth coming back to.</p>
+      <div class="char-profile__subtitle">The Memory He Keeps</div>
+      <p class="char-profile__text">A Tuesday. She is sitting on the kitchen counter — "chairs are for guests and I live here" — talking about something he has already forgotten the subject of. He is not really listening. He is just watching her talk, thinking: <em>this is the world. This right here. Whatever else exists, this is the part that counts.</em> He has never told anyone about that moment.</p>
+      <div class="char-profile__subtitle">The End</div>
+      <p class="char-profile__text">She left. What matters is that the steadiness turned out to be a surface, and underneath it was something he hadn't seen coming. He did not fall apart. He burned. 1.5 billion people became the distance between who he was on that Tuesday in the kitchen and who he was capable of being when the last soft thing he owned was taken. He does not blame her anymore. He doesn't have the energy. What remains is not anger — just the absence of the thing that used to be there, which is its own kind of permanent.</p>
+    </div>
+
+    <!-- LEZMYON -->
+    <div class="char-profile" data-rel="hostile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">Lezmyon</span>
+        <span class="char-profile__role">The Betrayer <span class="rel-tag rel-hostile">Hostile</span></span>
+        <a href="lezmyon.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">Before the universe. Before anything had a name — a single drop of ink fell on paper. From it, <strong>Ink</strong> rose. In the same moment, a single drop of blood hit the same paper. From it, <strong>Lezmyon</strong> woke up. They are not brothers. Not enemies, exactly. They are the two things that existed before existence — creation and ruin, born from the same instant, the same surface, the same silence.</p>
+      <div class="char-profile__subtitle">Motivation</div>
+      <p class="char-profile__text">One obsession — to be written into history so deeply nothing can erase him. Doesn't care if history remembers him as savior or monster. He also simply enjoys chaos and death.</p>
+      <div class="char-profile__subtitle">Satan's Whisper — وسوسة الشيطان</div>
+      <p class="char-profile__text">Full psychological possession. Reaches into a person's mind and rewrites what they feel, believe, and want. The victim experiences it as their own thoughts. No fingerprints. Never been caught.</p>
+      <div class="char-profile__subtitle">The Mission He Betrayed</div>
+      <p class="char-profile__text">The Well's instruction was simple: bring Adham here. Nothing more. Everything else — Satan's Whisper on his family, the rusty knife, the sixteen year old left alone with a guilt he would carry forever — was Lezmyon's own choice. He was also the final instrument of the unnamed god's campaign — told by a messenger to burn the Tree. He did both things willingly.</p>
+    </div>
+
+    <!-- INK -->
+    <div class="char-profile" data-rel="neutral">
+      <div class="char-profile__header">
+        <span class="char-profile__name">Ink</span>
+        <span class="char-profile__role">Primordial Entity of Creation <span class="rel-tag rel-neutral">Neutral</span></span>
+        <a href="ink.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">Ink is not human. He is a primordial entity of creation — the living remnant of that first drop that gave form to everything. Anything <span class="lore-term" data-tooltip="A primordial entity of creation born from a drop of ink. Anything he writes or draws becomes real.">Ink</span> draws or writes becomes real. Fully real, fully independent. This is how Dream and Fresh exist.</p>
+      <p class="char-profile__text">Lezmyon ate the part of Ink's brain that holds long-term memory. Then he installed <span class="lore-term" data-tooltip="The reverse-engineered dark mirror of Golden Blood, created by Lezmyon.">Chaos Blood</span> inside Ink's body as a lock — not a weapon. <span class="lore-term" data-tooltip="A primordial entity of creation born from a drop of ink. Anything he writes or draws becomes real.">Ink</span> carries Golden Blood, a regenerative system that, left alone, would eventually rebuild what was taken. The <span class="lore-term" data-tooltip="The reverse-engineered dark mirror of Golden Blood, created by Lezmyon.">Chaos Blood</span> burns every attempt down. <span class="lore-term" data-tooltip="A primordial entity of creation born from a drop of ink. Anything he writes or draws becomes real.">Ink</span> heals everything except the one thing that matters.</p>
+      <div class="char-profile__subtitle">The Scarf</div>
+      <p class="char-profile__text">Ink wakes up with no past. All he has is a scarf — fits any neck perfectly, when unfolded has no end. He writes everything he learns on it before <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> surfaces again. When <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> takes control, he rewrites anything he doesn't want <span class="lore-term" data-tooltip="A primordial entity of creation born from a drop of ink. Anything he writes or draws becomes real.">Ink</span> to know. He edits the only memory <span class="lore-term" data-tooltip="A primordial entity of creation born from a drop of ink. Anything he writes or draws becomes real.">Ink</span> has left.</p>
+      <div class="char-profile__subtitle">Ink & Lezmyon</div>
+      <p class="char-profile__text">Ink is fully conscious when <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> operates. He watches everything. He just can't always hold onto what he's seen. And yet he loves his brother — the way something ancient and unconditional doesn't have an off switch. <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> loves him back. In his own broken logic, he does. Two primordial beings from the same moment, the same paper, the same silence — and the closest thing either of them has ever had to home is the other one.</p>
+    </div>
+
+    <!-- TREE MAKER -->
+    <div class="char-profile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">The Tree Maker</span>
+        <span class="char-profile__role">The Previous Emperor</span>
+      </div>
+      <p class="char-profile__text">The man who emerged from the Tree was the previous Emperor of the Muqadas. Like all Emperors, his immortality was tied to that title — and the title is not permanent. When the Wipe came and hands began consolidating, the title eventually shifted. He is no longer Emperor, no longer immortal, and his current status is unknown. He built the Tree, gave <span class="lore-term" data-tooltip="A legendary, exponentially scaling power system born from a single drop of golden rain.">Golden Blood</span> to Ink, and walked back into the branches.</p>
+      <div class="char-profile__subtitle">The Tree</div>
+      <p class="char-profile__text">A massive, golden, glowing tree of unknown location. Stored knowledge itself — everything every <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> Emperor ever learned across all of time. Burned by Lezmyon. That knowledge is gone. Adham is now the only place it can ever exist again — if he ever unlocks what he is.</p>
+    </div>
+
+    <!-- LINKSIA -->
+    <div class="char-profile" data-rel="ally">
+      <div class="char-profile__header">
+        <img src="My ocs/linxia.png" alt="Linksia" class="char-profile__avatar">
+        <span class="char-profile__name">لينكسيا — Linksia</span>
+        <span class="char-profile__role">The Daughter <span class="rel-tag rel-ally">Ally</span></span>
+        <a href="linksia.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">The daughter of an angel and a human. In the universe where she was born, this was a sin. Jabrial sent a beam from the sky to wipe her entire village. Adham was investigating reports of something unusual when the beam came down. He saw her — a child standing in front of it. He moved without deciding to. He threw himself between her and the beam. He survived because he always survives. She survived because he was there.</p>
+      <p class="char-profile__text">This happened after Fie. After everything. The man who had just proven he could burn 1.5 billion people threw himself in front of divine fire for a child he had never met, without hesitation.</p>
+      <div class="char-profile__subtitle">Their Relationship</div>
+      <p class="char-profile__text">He raised her. Not because anyone asked, not as penance — just because after the beam there was a child with nowhere to go and he was the one standing there. She calls him father. He does not correct her. For Adham, who closed every door after Fie, Linksia is the door he forgot to close.</p>
+      <div class="char-profile__subtitle">Appearance</div>
+      <p class="char-profile__text">Looks fully human. Small pointed features on top of her head — subtle enough to miss in a crowd. Light, almost white wavy hair. Dark sharp eyes. Athletic build. Default: dark crop top, loose wrap pants, arms behind her head, completely unbothered.</p>
+      <div class="char-profile__subtitle">Powers</div>
+      <p class="char-profile__text"><strong>Light Control</strong> — She can manipulate light. Full scope to be established.</p>
+      <p class="char-profile__text"><strong>The Upgrade</strong> — She points at a person and begins upgrading something they have — a power, a sense, a physical ability. The upgrade does not stop unless she stops it. Push far enough and the thing being enhanced starts tearing the person apart from the inside.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <section class="section" id="nine">
+    <h2 class="section__label">The Nine</h2>
+    <p >The Tree called nine people into existence one by one. Each chosen deliberately. Many universes have called them gods. They are not gods. They are the best there has ever been at what they do.</p>
+
+    <div class="nine-grid bento-grid">
+      <div class="nine-card">
+        <div class="nine-card__name">The Well</div>
+        <div class="nine-card__domain">God of Knowledge</div>
+        <div class="nine-card__detail">Guardian of the Tree. Personally trained Adham. His assignment of Adham as his student was not accidental.</div>
+      </div>
+      <div class="nine-card">
+        <div class="nine-card__name">Ink</div>
+        <div class="nine-card__domain">God of Creativity</div>
+        <div class="nine-card__detail">Primordial entity of creation, currently possessed by Lezmyon. Created Dream and Fresh before <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> took everything.</div>
+      </div>
+      <div class="nine-card">
+        <div class="nine-card__name">Dream</div>
+        <div class="nine-card__domain">God of Kindness, Love & Forgiveness</div>
+        <div class="nine-card__detail">Created by <span class="lore-term" data-tooltip="A primordial entity of creation born from a drop of ink. Anything he writes or draws becomes real.">Ink</span> from his kindness. His own person, his own will.</div>
+      </div>
+      <div class="nine-card">
+        <div class="nine-card__name">Fresh</div>
+        <div class="nine-card__domain">God of Time</div>
+        <div class="nine-card__detail">Created by <span class="lore-term" data-tooltip="A primordial entity of creation born from a drop of ink. Anything he writes or draws becomes real.">Ink</span> from his cool factor. Domain over time only within the Nine's universe. In the Refugee Universe, subject to the same limitations as anyone else.</div>
+      </div>
+      <div class="nine-card">
+        <div class="nine-card__name">The Blind Swordsman</div>
+        <div class="nine-card__domain">God of Peace</div>
+        <div class="nine-card__detail">Cannot see. Found inner peace so complete it replaced every sense he lost and gave him something sharper. Greatest swordsman who has ever lived.</div>
+      </div>
+      <div class="nine-card">
+        <div class="nine-card__name">The Blacksmith</div>
+        <div class="nine-card__domain">God of Dedication & Passion</div>
+        <div class="nine-card__detail">Greatest blacksmith to ever live across any universe. Every thing he has ever forged is perfect. Craft at its absolute ceiling is a form of love.</div>
+      </div>
+      <div class="nine-card">
+        <div class="nine-card__name">The Strongest</div>
+        <div class="nine-card__domain">God of Power</div>
+        <div class="nine-card__detail">Not the fastest, not the most skilled — the one who at the end of everything is still standing. He teaches what to do with strength once you have it.</div>
+      </div>
+      <div class="nine-card">
+        <div class="nine-card__name">Death</div>
+        <div class="nine-card__domain">God of Death</div>
+        <div class="nine-card__detail">Carries the name and it fits. Not theatrical darkness — something quieter and harder to look at directly. Most feared and least understood of the Nine.</div>
+      </div>
+      <div class="nine-card">
+        <div class="nine-card__name">The Ninth</div>
+        <div class="nine-card__domain">God of Speed</div>
+        <div class="nine-card__detail">Primary teacher of Nour / Light. Details to be established.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- THE FOUR -->
+  <section class="section">
+    <h2 class="section__label">The Four — Training Group</h2>
+    <p >Brought in by <span class="lore-term" data-tooltip="A primordial entity of creation born from a drop of ink. Anything he writes or draws becomes real.">Ink</span> (Lezmyon). Became close in a way the training alone doesn't explain — just the specific warmth of people becoming important to each other before they understand what's coming. Adham was friends with all of them, but never the best friend of any single one. Ayman and Nour were the duo — always together, always in sync. Ahmed was always alone, but still friends with the rest. The group worked because nobody forced it.</p>
+
+    <div class="char-profile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">Nour — "Light"</span>
+        <span class="char-profile__role">Primary Teacher: The Ninth</span>
+        <a href="nour.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <div class="id-grid" >
+        <div class="id-card"><div class="id-card__label">Race</div><div class="id-card__value">Super — biologically engineered for mass destruction</div></div>
+        <div class="id-card"><div class="id-card__label">Age</div><div class="id-card__value">Physically 40s. Actual age unknown.</div></div>
+        <div class="id-card"><div class="id-card__label">Status</div><div class="id-card__value">Post-tree burning — location unknown. Left a family behind.</div></div>
+      </div>
+      <div class="char-profile__subtitle">Abilities</div>
+      <p class="char-profile__text"><strong>Absolute Freeze</strong> — Freezes anything to the atomic level by touch. Full cryokinetic powers.</p>
+      <p class="char-profile__text"><strong>Dismantle & Slashing</strong> — Gathers energy into an extremely thin edge. Cuts anything down to the atomic level.</p>
+      <p class="char-profile__text"><strong>Black Liquid</strong> — Dense, heavy black liquid. Anyone who touches it suffers poison or sickness. Can transform entirely into the liquid. Uses it to regenerate.</p>
+      <p class="char-profile__text"><strong>Light Speed</strong> — Reached slightly faster-than-light speed.</p>
+      <p class="char-profile__text"><strong>Time Manipulation</strong> — Watch from Fresh allows slight time manipulation — stopping it, skipping forward, or rewinding. Precision over raw power.</p>
+      <div class="char-profile__subtitle">Backstory</div>
+      <p class="char-profile__text">Light was biologically engineered to be a universal weapon — built to save humanity by destroying everything in its way. He never chose this. He never wanted to be a weapon.</p>
+      <p class="char-profile__text">Ink dragged him out of his story at the end of it. He was furious. He hated everything about the system — not because he wanted to do evil, but because he wanted to do good <em>on his own terms</em>. He wanted to help the weak, save the homeless, be a good person. Not because a cosmic structure forced him to.</p>
+      <p class="char-profile__text">After the Tree burned, Light finally got out. He found a universe, found a girl — an idol named <strong>Ei</strong> — and started a family. They had twins: <strong>Yuro</strong> and <strong>Yuno</strong>. Then he disappeared. No explanation. No goodbye.</p>
+      <p class="char-profile__text" >Light is the mirror of what the Nine claim to stand for. They say they exist to lead the world toward good by example and choice. Light is proof that even the Nine's system can strip someone of choice while claiming to serve it. He wanted to be good. He just wanted it to be his.</p>
+    </div>
+
+    <div class="char-profile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">Ahmed</span>
+        <span class="char-profile__role">Primary Teacher: Death & The Blind Swordsman</span>
+        <a href="ahmed.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">Death did not want to teach a child how bad the world was, so he brought the Blind Swordsman in to balance what he couldn't give alone. Profile to be filled in by Ahmed's creator.</p>
+    </div>
+
+    <div class="char-profile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">Ayman / AGX</span>
+        <span class="char-profile__role">Assigned: The Blacksmith — Refused</span>
+        <a href="ayman.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">Assigned teacher: The Blacksmith, God of Dedication & Passion. Refused the assignment. Profile to be filled in by Ayman/AGX's creator.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- BACKSTORY TIMELINE -->
+  <section class="section" id="backstory">
+    <h2 class="section__label">Backstory — Universe by Universe</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-title">Origin Universe — Egypt, Earth</div>
+        <div class="tl-desc">
+          <div class="hand-shape-float"></div>
+          Normal school. Normal life. Powers surfaced quietly. When Adham was sixteen, <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> — wearing Ink's body — came, used Satan's Whisper on his family, handed him a rusty knife, and forced a conclusion. Adham has never once suspected they were manipulated. As far as he knows, his family simply hated him. That is the wound underneath every other wound.
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-title">The Training</div>
+        <div class="tl-desc">Lezmyon brought Adham in alongside three other kids. Each assigned to one of the Nine. Adham trained under the Well directly. Late nights, inside jokes, people becoming important to each other before they understand what's coming.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-title">The Training Universes</div>
+        <div class="tl-desc">Universe after universe, stripped of his powers beyond immortality in most of them. He trained. He fought. He lost. He woke up and trained again. He became something very quiet and very dangerous. During this time he subjectively experienced billions of years.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-title">Linksia's Universe</div>
+        <div class="tl-desc">He arrived to find Jabrial sending a beam from the sky to wipe an entire village. He saw Linksia — a child standing in front of it. He moved without deciding to.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-title">Balance's Test — Lona</div>
+        <div class="tl-desc">Balance selected Adham and sent him Lona — the female version of him, created for the test. She knew the whole time she was going to die by his hand. She did not tell him. She fought him, and before the end told him one thing. When Balance forced the conclusion, Adham killed her. Whether he fully understands what she knew and chose not to say — that is unresolved.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-title">The Assassin Universe — The World God Left</div>
+        <div class="tl-desc">God had simply left. Angels remained, cold and bureaucratic. Adham became the best assassin this world had ever produced. He did it for Fie — the proof he was still a person. Then she cheated on him. 1.5 billion people died. He built a mountain with his hands in days. Seraph fired a wish arrow. Against an immortal Emperor it could not complete. The glitch remained. He woke up in a new universe.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- THE CURRENT UNIVERSE -->
+  <section class="section">
+    <h2 class="section__label">The Refugee World</h2>
+    <div class="narrative">
+  <h3 class="narrative__title">What Happened to Ink's Universe</h3>
+      <p class="narrative__text">While Adham was in the god-left universe, <span class="lore-term" data-tooltip="The Betrayer. A primordial entity of ruin born from a drop of blood.">Lezmyon</span> finally won. After a war spanning more lore than any document can hold, he burned the Tree and destroyed the universe around it. Some survived. They fled into a new universe, trying to build something from the wreckage. That is the world Adham wakes up in.</p>
+    </div>
+    <div class="narrative">
+  <h3 class="narrative__title">How Adham Arrives</h3>
+      <p class="narrative__text">Seraph's wish arrow crossed universes. Adham wakes up in a wooden crate. The survivors who loaded it thought it was food. It was Adham. He wakes up in the dark, in a box, among people who just survived the end of everything — refugees who lost their world to Lezmyon, the same entity who handed a sixteen year old a rusty knife. They don't know who he is. He doesn't know what they lost. Neither knows yet that the destruction of their world and the destruction of his childhood share the same name.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- FOUR GODS -->
+  <section class="section" id="gods">
+    <h2 class="section__label">The Four Gods</h2>
+    <p >These are not the Nine. They are four of the Father's original six angels — each became their domain so completely that the universe knows them as gods.</p>
+
+    <div class="gods-grid">
+      <div class="god-card">
+        <div class="god-card__name">Hell & Heaven</div>
+        <div class="god-card__angel">Metatron</div>
+        <div class="god-card__desc">Created both Hell and Heaven. Holds both domains simultaneously.</div>
+      </div>
+      <div class="god-card">
+        <div class="god-card__name">Death</div>
+        <div class="god-card__angel">Samael</div>
+        <div class="god-card__desc">Not the creator of Death — he <em>is</em> Death. He became it entirely.</div>
+      </div>
+      <div class="god-card">
+        <div class="god-card__name">Balance</div>
+        <div class="god-card__angel">Seraphim</div>
+        <div class="god-card__desc">Created time, matter, and balance itself. The one who designed the Rewrite Key test. He enjoys himself — plays, meddles, creates impossible situations out of genuine curiosity.</div>
+      </div>
+      <div class="god-card">
+        <div class="god-card__name">The Dragon</div>
+        <div class="god-card__angel">Michael</div>
+        <div class="god-card__desc">The angel who created life became The Dragon. So vast that every galaxy, every star, every thing that exists is either inside him or on him. He is not a being who lives in the universe. He is the universe wearing a shape.</div>
+      </div>
+    </div>
+
+    <div class="narrative" >
+  <h3 class="narrative__title">The Father</h3>
+      <p class="narrative__text">Above the four gods. Rarely speaks. When He does, all of creation stops. His silence is not absence — it is patience. He created six angels originally: Gabriel, Lucifer, Michael, Samael, Metatron, Seraphim. Of those, four became the gods of this universe. Gabriel and Lucifer did not.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- TALE OF LUCIFER -->
+  <section class="section">
+    <h2 class="section__label">The Tale of Lucifer</h2>
+    <a href="tale_of_lucifer.html" style="display:inline-block; margin-bottom: 2rem; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; font-size: 0.95rem; font-family: var(--font-sans);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Read the Full Story &rarr;</a>
+
+    <div class="char-profile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">Gabriel</span>
+        <span class="char-profile__role">The Right Hand of the Father</span>
+        <a href="gabriel.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">The only angel who has ever heard His voice directly. Strongest of the six after Lucifer. Stood against all of Heaven to protect Satanail and fought four angels to a standstill alone. Not always sure how much of what he declared as the Father's will was truly the Father's, and how much was his own.</p>
+    </div>
+
+    <div class="char-profile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">Lucifer</span>
+        <span class="char-profile__role">Keeper of Forbidden Knowledge</span>
+        <a href="lucifer.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">Strongest of all created beings. Rebelled against the Father — not entirely out of pride, but something more complicated. Cast into Hell. Currently in the deepest layer, where the flames bow to him. He is waiting. When Satanail came to him, he asked what she was fighting for. Her answer: <em>"A new beginning."</em></p>
+    </div>
+
+    <div class="char-profile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">The Messiah</span>
+        <span class="char-profile__role">Born of Two Halves</span>
+        <a href="messiah.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">Born of Gabriel's light and a fragment of the original fire. Neither fully good nor fully evil. Ate from the Forbidden Tree with Satanail. Stepped between two divine forces to stop the war and fell — wings turned to dust. Current state unknown.</p>
+    </div>
+
+    <div class="char-profile">
+      <div class="char-profile__header">
+        <span class="char-profile__name">Satanail</span>
+        <span class="char-profile__role">The Woman Born of Fire</span>
+        <a href="satanail.html" style="display:block; margin-top: 10px; color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; text-decoration: none; transition: opacity 0.3s; width: max-content; font-size: 0.9rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Character Profile &rarr;</a>
+      </div>
+      <p class="char-profile__text">The Father reached into the first spark of evil and shaped half a soul from it — she became something undefined. Multiple angels tried to erase her. Gabriel protected her. Now in Hell with Lucifer, carrying knowledge that even the Father did not grant him. Fighting for something she calls a new beginning.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- BALANCE'S TEST -->
+  <section class="section">
+    <h2 class="section__label">Balance's Test</h2>
+    <div class="narrative">
+  <h3 class="narrative__title">The Rules</h3>
+      <p class="narrative__text">Balance selects a chosen individual and sends them an <strong>Assistant</strong> — a version of that person in the opposite gender. The Assistant is real: their own consciousness, their own powers, their own presence. They know they are going to die — and that it will be at the hands of the chosen one. What they choose to do with that knowledge is entirely their own. At the end of the test, the chosen one must kill the Assistant. No negotiation. No alternative.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- WORLD MECHANICS -->
+  <section class="section">
+    <h2 class="section__label">World Mechanics</h2>
+    <div class="narrative">
+  <h3 class="narrative__title">Jabrial — Nature & Resurrection</h3>
+      <p class="narrative__text">Jabrial is not a singular being that can be permanently destroyed. He is an angel made of light. As long as Seraph is alive, Seraph can fire an arrow of light and wish it to become Jabrial — instantly reforming him. Killing a physical instance of Jabrial eliminates that manifestation only.</p>
+    </div>
+    <div class="narrative">
+  <h3 class="narrative__title">Fresh — Domain Limits</h3>
+      <p class="narrative__text">Fresh is God of Time, but only within the domain of the Nine's universe. Outside it, his dominion over time does not follow him. In the Refugee Universe, time is governed by Balance through a physical clock mechanism. Fresh is subject to the same physical limitations as anyone else there.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- PERSONALITY -->
+  <section class="section" id="personality">
+    <h2 class="section__label">Personality & Psychology</h2>
+    <div class="narrative">
+      <p class="narrative__text">Adham is not broken. Broken things don't function. He functions extremely well — professional, precise, economically motivated. He takes jobs, completes them, gets paid.</p>
+      <p class="narrative__text">Underneath that: the settled kind of pain, the kind that becomes part of your structure. He likes money because money is honest. It doesn't pretend to care about him. The transaction is the whole relationship and he finds that clean.</p>
+      <p class="narrative__text">He is not cruel — he doesn't enjoy suffering. But he has a very high threshold for what he considers necessary, and that threshold was recalibrated by grief a long time ago.</p>
+    </div>
+    <div class="narrative">
+  <h3 class="narrative__title">Moral Lines</h3>
+      <p class="narrative__text">Everything Adham does now runs through one filter: <strong>Linksia.</strong> He will do anything to protect her — no limit, no line, no hesitation. But the inverse is just as absolute: he will not do anything she would see as bad. He wants to look good in her eyes. Not powerful, not feared — <em>good.</em></p>
+      <p class="narrative__text">The man who burned 1.5 billion people now measures his actions against the opinion of one child. That is not weakness. That is the only anchor he has left, and he holds it with everything.</p>
+    </div>
+    <div class="narrative">
+  <h3 class="narrative__title">Daily Life — The Refugee Universe</h3>
+      <p class="narrative__text">In the Refugee Universe, Adham is not hunting. He's not taking contracts. He helps people at an orphanage — kids with nowhere to go, the kind of situation he recognizes without needing to say why. He also runs a restaurant. Cooking, serving, cleaning up. Ordinary work done by someone who is anything but ordinary.</p>
+      <p class="narrative__text">It is the closest thing to a normal life he has ever built. The orphanage because he understands what it means to be a child with no one. The restaurant because it is honest work that feeds people. Both of these choices say more about who he is now than any power ever could.</p>
+    </div>
+  </section>
+
+  <div class="sep"><span class="sep__dot"></span></div>
+
+  <!-- HIDDEN TRUTH -->
+  <section class="section" id="truth">
+    <h2 class="section__label">The Hidden Truth</h2>
+    <p >Dramatic Irony</p>
+
+    <div class="irony-grid">
+      <div class="irony-item">
+        <div class="irony-item__believes">
+          <span class="irony-item__label">He Believes</span>
+          His powers came from the man who destroyed him.
+        </div>
+        <div class="irony-item__truth">
+          <span class="irony-item__label">The Truth</span>
+          They are his by blood and inheritance — the legacy of the first Emperor he is the rebirth of.
+        </div>
+      </div>
+      <div class="irony-item">
+        <div class="irony-item__believes">
+          <span class="irony-item__label">He Believes</span>
+          Surviving is luck.
+        </div>
+        <div class="irony-item__truth">
+          <span class="irony-item__label">The Truth</span>
+          It is divine law written into his title.
+        </div>
+      </div>
+      <div class="irony-item">
+        <div class="irony-item__believes">
+          <span class="irony-item__label">He Believes</span>
+          His family hated him.
+        </div>
+        <div class="irony-item__truth">
+          <span class="irony-item__label">The Truth</span>
+          They were the last people who knew what he truly was, and they died holding that secret to protect him.
+        </div>
+      </div>
+      <div class="irony-item">
+        <div class="irony-item__believes">
+          <span class="irony-item__label">He Believes</span>
+          He is alone.
+        </div>
+        <div class="irony-item__truth">
+          <span class="irony-item__label">The Truth</span>
+          He is a monarch — the last of a lineage a trillion souls wide, the rebirth of the man who built that lineage from nothing, now compressed into one person taking contracts because he likes the money.
+        </div>
+      </div>
+    </div>
+
+    <div class="prophecy" >
+      <p >The <span class="lore-term" data-tooltip="An extinct, ancient spacefaring race. Each member was born with a specific numbered hand.">Muqadas</span> are gone. But their Emperor is not.<br>And the Emperor — by every law they ever lived under —<br>cannot die until he chooses to understand what he is.</p>
+      <p ><em>He has not chosen yet.</em></p>
+    </div>
+    </section>
+
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    Document status: Ongoing. Timeline gap resolution, Ahmed & Ayman/AGX profiles, remaining Nine details, and the unnamed god to be expanded.
+  </footer>
+
+</main>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+
+<script src="app.js"></script>
+
+<!-- MODAL -->
+<dialog class="modal" id="modal">
+  <div class="modal__content">
+    <button class="modal__close" aria-label="Close Modal">✕</button>
+    <div class="modal__body"></div>
+  </div>
+</dialog>
+
+</body>
+</html>
