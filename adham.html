@@ -2364,6 +2364,21 @@ document.addEventListener('DOMContentLoaded', () => {
             else { audioObj.pause(); clearInterval(fade); }
         }, 50);
     }
+
+    window.switchThemeBGM = function(themeName) {
+        if (!bgmTracks[themeName]) return;
+        const newBGM = bgmTracks[themeName];
+        if (currentBGM === newBGM) return;
+
+        if (audioEnabled) {
+            fadeOutBGM(currentBGM);
+            currentBGM = newBGM;
+            currentBGM.play().catch(() => console.log('BGM not found.'));
+            fadeInBGM(currentBGM);
+        } else {
+            currentBGM = newBGM;
+        }
+    };
 });
 
 </script>
