@@ -1,0 +1,29 @@
+---
+// src/components/Accordion.astro
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<details class="group border border-white/10 rounded-xl bg-black/40 backdrop-blur-md overflow-hidden mb-6 transition-all duration-300">
+  <summary class="cursor-pointer p-6 font-serif text-xl text-gray-200 list-none flex justify-between items-center hover:bg-white/5 transition-colors">
+    <span class="font-bold tracking-wider">{title}</span>
+    <span class="transform group-open:rotate-180 transition-transform duration-300">
+      <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </span>
+  </summary>
+  <div class="p-6 pt-0 mt-4 border-t border-white/5 text-gray-300 prose prose-invert prose-p:my-2 prose-headings:mt-4 prose-headings:mb-2 max-w-none">
+    <slot />
+  </div>
+</details>
+
+<style>
+  /* Hide the default marker */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

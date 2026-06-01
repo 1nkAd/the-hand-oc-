@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-gold: #ffd700;
+  --color-blood: #8b0000;
+  --color-cosmic: #0b0c10;
+  --color-glass: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  @apply bg-black text-gray-200 min-h-screen overflow-x-hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+}

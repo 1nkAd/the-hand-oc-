@@ -1,0 +1,40 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	theme?: 'gold' | 'blood' | 'cosmic' | 'light';
+}
+
+const { title, theme = 'light' } = Astro.props;
+
+// Map themes to specific background styles
+const themeClasses = {
+	gold: 'bg-gradient-to-br from-black via-yellow-900/20 to-black',
+	blood: 'bg-gradient-to-br from-black via-red-950/40 to-black',
+	cosmic: 'bg-gradient-to-br from-cosmic via-blue-950/30 to-black',
+	light: 'bg-black'
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | The Hand Universe</title>
+		<ClientRouter />
+	</head>
+	<body class={`${themeClasses[theme]} min-h-screen transition-colors duration-1000 pt-20 flex flex-col`}>
+		<Navbar />
+		<div class="flex-grow">
+			<slot />
+		</div>
+		<Footer />
+	</body>
+</html>

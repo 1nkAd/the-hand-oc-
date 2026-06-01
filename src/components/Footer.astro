@@ -1,0 +1,19 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-white/10 bg-black/40 backdrop-blur-md py-12">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="text-center md:text-left">
+      <div class="text-xl font-bold font-serif tracking-widest text-white/90">
+        <span class="text-white/50">THE</span> HAND <span class="text-white/50">UNIVERSE</span>
+      </div>
+      <p class="text-sm text-white/40 mt-2 tracking-wider">REFUGE UNIVERSE ARCHIVE</p>
+    </div>
+    
+    <div class="text-sm text-white/30 font-medium tracking-widest uppercase">
+      &copy; {currentYear} ALL RIGHTS RESERVED
+    </div>
+  </div>
+</footer>

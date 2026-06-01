@@ -1,0 +1,53 @@
+---
+// src/components/IdCard.astro
+
+interface Stat {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  stats: Stat[];
+  theme?: 'gold' | 'blood' | 'cosmic' | 'light' | 'lucifer';
+}
+
+const { stats, theme = 'light' } = Astro.props;
+
+const borderColors = {
+  gold: 'border-yellow-600/30 hover:border-yellow-500/60',
+  blood: 'border-red-900/40 hover:border-red-500/60',
+  cosmic: 'border-blue-900/40 hover:border-blue-400/60',
+  light: 'border-white/10 hover:border-white/40',
+  lucifer: 'border-red-900/40 hover:border-red-500/60'
+};
+
+const textColors = {
+  gold: 'text-yellow-500',
+  blood: 'text-red-500',
+  cosmic: 'text-blue-400',
+  light: 'text-white',
+  lucifer: 'text-red-500'
+};
+
+const themeColor = theme in borderColors ? theme : 'light';
+---
+
+<div class="mt-12 mb-16">
+  <h2 class="text-xl font-serif tracking-[0.2em] uppercase text-gray-400 mb-6 flex items-center">
+    <span class={`w-2 h-2 rounded-full ${themeColor === 'gold' ? 'bg-yellow-500' : themeColor === 'blood' ? 'bg-red-500' : themeColor === 'cosmic' ? 'bg-blue-400' : 'bg-white'} mr-3`}></span>
+    Identity Records
+  </h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    {stats.map((stat) => (
+      <div class={`p-6 rounded-xl bg-black/40 backdrop-blur-md border ${borderColors[themeColor]} transition-colors duration-500 group flex flex-col justify-center`}>
+        <div class="text-xs font-bold tracking-widest text-gray-500 uppercase mb-2 group-hover:text-gray-400 transition-colors">
+          {stat.label}
+        </div>
+        <div class={`text-lg font-medium text-gray-200 group-hover:${textColors[themeColor]} transition-colors`}>
+          {stat.value}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

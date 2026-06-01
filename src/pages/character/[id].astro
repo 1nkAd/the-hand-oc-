@@ -1,0 +1,85 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import IdCard from '../../components/IdCard.astro';
+
+export async function getStaticPaths() {
+  const characters = await getCollection('characters');
+  return characters.map(char => ({
+    params: { id: char.id },
+    props: { char },
+  }));
+}
+
+const { char } = Astro.props;
+const { Content } = await render(char);
+
+// Theme styling for the page
+const textColors = {
+  gold: 'text-yellow-500',
+  blood: 'text-red-500',
+  cosmic: 'text-blue-400',
+  light: 'text-white'
+};
+
+const borderColors = {
+  gold: 'border-yellow-600/40',
+  blood: 'border-red-900/50',
+  cosmic: 'border-blue-900/50',
+  light: 'border-white/20'
+};
+
+const proseStyles = {
+  gold: 'prose-headings:text-yellow-500 prose-a:text-yellow-500 hover:prose-a:text-yellow-400 prose-strong:text-yellow-500/90 marker:text-yellow-500',
+  blood: 'prose-headings:text-red-500 prose-a:text-red-500 hover:prose-a:text-red-400 prose-strong:text-red-500/90 marker:text-red-500',
+  cosmic: 'prose-headings:text-blue-400 prose-a:text-blue-400 hover:prose-a:text-blue-300 prose-strong:text-blue-400/90 marker:text-blue-400',
+  light: 'prose-headings:text-white prose-a:text-white hover:prose-a:text-gray-300 prose-strong:text-white/90 marker:text-white'
+};
+
+const themeColor = char.data.theme as keyof typeof textColors;
+---
+
+<Layout title={char.data.name} theme={themeColor}>
+  <article class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+    
+    <a href="/" class="inline-flex items-center text-gray-400 hover:text-white transition-colors mb-12 group">
+      <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Back to Hub
+    </a>
+
+    <header class="mb-8">
+      <div class={`inline-block px-3 py-1 mb-4 rounded-full text-xs font-bold tracking-widest uppercase border bg-black/50 backdrop-blur-md ${borderColors[themeColor]} text-gray-300`}>
+        {char.data.race}
+      </div>
+      
+      <h1 transition:name={`title-${char.id}`} class={`text-5xl md:text-7xl font-extrabold tracking-tight mb-4 ${textColors[themeColor]}`}>
+        {char.data.name}
+      </h1>
+      
+      <h2 class="text-2xl md:text-3xl text-gray-300 font-light mb-8">
+        {char.data.title}
+      </h2>
+      
+      <div class={`p-6 rounded-xl border bg-black/40 backdrop-blur-md ${borderColors[themeColor]}`}>
+        <p class="text-lg italic text-gray-300">"{char.data.quote}"</p>
+      </div>
+    </header>
+
+    <IdCard 
+      theme={themeColor} 
+      stats={[
+        { label: 'Codename', value: char.data.name },
+        { label: 'Race', value: char.data.race },
+        { label: 'Role', value: char.data.role },
+        { label: 'Status', value: char.data.status },
+      ]} 
+    />
+
+    <div class={`prose prose-invert prose-lg max-w-none prose-hr:border-white/10 ${proseStyles[themeColor]} transition-colors duration-500`}>
+      <Content />
+    </div>
+    
+  </article>
+</Layout>
