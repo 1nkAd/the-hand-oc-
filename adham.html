@@ -2304,6 +2304,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+    // Ancient Muqadas Decoder (Translate)
+    const decodeBtn = document.getElementById('decode-toggle');
+    if (decodeBtn) {
+        decodeBtn.addEventListener('click', () => {
+            const textNodes = [];
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            while (node = walker.nextNode()) {
+                if (node.nodeValue.trim() !== '' && node.parentElement.tagName !== 'SCRIPT' && node.parentElement.tagName !== 'STYLE') {
+                    textNodes.push({ node, original: node.nodeValue });
+                }
+            }
+            const runes = ["⍙", "⎍", "⍜", "⏁", "⟒", "⏃", "⌇", "⎅", "⎎", "☌", "⊑", "⟊"];
+            
+            let iter = 0;
+            const scrambleInterval = setInterval(() => {
+                textNodes.forEach(item => {
+                    if (Math.random() > 0.5) {
+                        item.node.nodeValue = item.original.split('').map(c => (c.trim() === '' ? c : runes[Math.floor(Math.random() * runes.length)])).join('');
+                    }
+                });
+                iter++;
+                if (iter > 15) {
+                    clearInterval(scrambleInterval);
+                    textNodes.forEach(item => item.node.nodeValue = item.original);
+                }
+            }, 50);
+        });
+    }
 
     // 10. Cinematic Audio Engine
     const audioBtn = document.getElementById('audio-toggle');
