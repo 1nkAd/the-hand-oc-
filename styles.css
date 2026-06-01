@@ -2644,9 +2644,9 @@ body.theme-satanail {
 
 /* INK (Monochrome / Memory Loss) */
 [data-theme='ink'] {
-  --bg-primary: #020202;
-  --bg-secondary: #080808;
-  --bg-tertiary: #101010;
+  --bg-primary: #030712;
+  --bg-secondary: #0f172a;
+  --bg-tertiary: #1e293b;
   --accent-primary: #f0f0f0;
   --accent-secondary: #ffffff;
   --accent-glow: rgba(255, 255, 255, 0.4);
@@ -2656,9 +2656,9 @@ body.theme-satanail {
 
 /* LEZMYON (Blood / Parasite / Abyss) */
 [data-theme='blood'] {
-  --bg-primary: #050000;
-  --bg-secondary: #0a0000;
-  --bg-tertiary: #120000;
+  --bg-primary: #1a0505;
+  --bg-secondary: #2c0b0b;
+  --bg-tertiary: #3f1111;
   --accent-primary: #cc0000;
   --accent-secondary: #ff3333;
   --accent-glow: rgba(204, 0, 0, 0.5);
@@ -2668,9 +2668,9 @@ body.theme-satanail {
 
 /* NOUR (Light / Absolute Freeze) */
 [data-theme='light'] {
-  --bg-primary: #00040a;
-  --bg-secondary: #010814;
-  --bg-tertiary: #021124;
+  --bg-primary: #0a0a05;
+  --bg-secondary: #1a1a0f;
+  --bg-tertiary: #2a2a1a;
   --accent-primary: #80cfff;
   --accent-secondary: #b3e0ff;
   --accent-glow: rgba(128, 207, 255, 0.5);
@@ -2680,9 +2680,9 @@ body.theme-satanail {
 
 /* MESSIAH (Ethereal / Light & Fire) */
 [data-theme='messiah'] {
-  --bg-primary: #0a0705;
-  --bg-secondary: #120c08;
-  --bg-tertiary: #1a120b;
+  --bg-primary: #050a0a;
+  --bg-secondary: #0f1a1a;
+  --bg-tertiary: #1a2a2a;
   --accent-primary: #ffebd6;
   --accent-secondary: #ffb470;
   --accent-glow: rgba(255, 235, 214, 0.5);
@@ -2692,9 +2692,9 @@ body.theme-satanail {
 
 /* SATANAIL (Fire / Defiance) */
 [data-theme='satanail'] {
-  --bg-primary: #080200;
-  --bg-secondary: #100400;
-  --bg-tertiary: #180600;
+  --bg-primary: #0a050a;
+  --bg-secondary: #1a0f1a;
+  --bg-tertiary: #2a1a2a;
   --accent-primary: #ff5500;
   --accent-secondary: #ff8800;
   --accent-glow: rgba(255, 85, 0, 0.5);
@@ -2704,9 +2704,9 @@ body.theme-satanail {
 
 /* FIE (Shadow / Normalcy / Betrayal) */
 [data-theme='shadow'] {
-  --bg-primary: #040506;
-  --bg-secondary: #080a0c;
-  --bg-tertiary: #0d1014;
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-tertiary: #27272a;
   --accent-primary: #788a99;
   --accent-secondary: #a1b0bd;
   --accent-glow: rgba(120, 138, 153, 0.4);
@@ -2717,8 +2717,8 @@ body.theme-satanail {
 /* FOURTH EMPEROR (Abyss / Void) */
 [data-theme='abyss'] {
   --bg-primary: #000000;
-  --bg-secondary: #020005;
-  --bg-tertiary: #05000a;
+  --bg-secondary: #0a0a0c;
+  --bg-tertiary: #141418;
   --accent-primary: #9d00ff;
   --accent-secondary: #cc80ff;
   --accent-glow: rgba(157, 0, 255, 0.5);
@@ -2728,9 +2728,9 @@ body.theme-satanail {
 
 /* TREE MAKER (Tree / Nature) */
 [data-theme='tree'] {
-  --bg-primary: #020603;
-  --bg-secondary: #040c06;
-  --bg-tertiary: #061208;
+  --bg-primary: #050a05;
+  --bg-secondary: #0f1a0f;
+  --bg-tertiary: #1a2a1a;
   --accent-primary: #00ff66;
   --accent-secondary: #66ff99;
   --accent-glow: rgba(0, 255, 102, 0.4);
@@ -2740,9 +2740,9 @@ body.theme-satanail {
 
 /* LUCIFER (Hell / Rebellion) */
 [data-theme='lucifer'] {
-  --bg-primary: #080000;
-  --bg-secondary: #100000;
-  --bg-tertiary: #180000;
+  --bg-primary: #120202;
+  --bg-secondary: #240505;
+  --bg-tertiary: #380a0a;
   --accent-primary: #ff0000;
   --accent-secondary: #ff4d4d;
   --accent-glow: rgba(255, 0, 0, 0.5);
@@ -2752,8 +2752,8 @@ body.theme-satanail {
 
 /* GABRIEL (Golden - slightly more holy than default) */
 [data-theme='gabriel'] {
-  --bg-primary: #080705;
-  --bg-secondary: #100e0a;
+  --bg-primary: #0c0a06;
+  --bg-secondary: #1a160d;
   --accent-primary: #ffdd77;
   --accent-secondary: #ffeeaa;
   --accent-glow: rgba(255, 221, 119, 0.5);
@@ -2761,9 +2761,9 @@ body.theme-satanail {
 
 /* FIRST EMPEROR (Cosmic / Origin Gold) */
 [data-theme='cosmic'] {
-  --bg-primary: #030105;
-  --bg-secondary: #06020a;
-  --bg-tertiary: #0a0312;
+  --bg-primary: #050212;
+  --bg-secondary: #0f0524;
+  --bg-tertiary: #1a0a38;
   --accent-primary: #ffd700;
   --accent-secondary: #ffea70;
   --accent-glow: rgba(255, 215, 0, 0.6);
@@ -2773,9 +2773,9 @@ body.theme-satanail {
 
 /* AHMED (Dark Void / Piercing Crimson) */
 [data-theme='ahmed'] {
-  --bg-primary: #040008;
-  --bg-secondary: #080010;
-  --bg-tertiary: #0c0018;
+  --bg-primary: #05080a;
+  --bg-secondary: #0a1014;
+  --bg-tertiary: #0f181e;
   --accent-primary: #ff0044;
   --accent-secondary: #ff3366;
   --accent-glow: rgba(255, 0, 68, 0.5);
@@ -2785,9 +2785,9 @@ body.theme-satanail {
 
 /* AGX (Neon Hacker / Cyan) */
 [data-theme='agx'] {
-  --bg-primary: #000808;
-  --bg-secondary: #001010;
-  --bg-tertiary: #001818;
+  --bg-primary: #0a0500;
+  --bg-secondary: #1a0f00;
+  --bg-tertiary: #2a1a00;
   --accent-primary: #00ffff;
   --accent-secondary: #66ffff;
   --accent-glow: rgba(0, 255, 255, 0.5);
@@ -2797,9 +2797,9 @@ body.theme-satanail {
 
 /* ANCHOR (Ocean / Deep Sea Blue) */
 [data-theme='anchor'] {
-  --bg-primary: #000a14;
-  --bg-secondary: #001428;
-  --bg-tertiary: #001f3d;
+  --bg-primary: #06080a;
+  --bg-secondary: #0d1114;
+  --bg-tertiary: #141a1e;
   --accent-primary: #00aaff;
   --accent-secondary: #33bbff;
   --accent-glow: rgba(0, 170, 255, 0.5);
