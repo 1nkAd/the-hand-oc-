@@ -11,16 +11,28 @@
    PREMIUM RESET & BASE
    ═══════════════════════════════════════════ */
 :root {
-  --bg-primary: #050507;
-  --bg-secondary: #0a0a0e;
-  --accent-primary: #FFB300;
-  --accent-secondary: #FFD54F;
-  --accent-glow: rgba(255, 179, 0, 0.4);
-  --text-main: #e0e0e0;
-  --text-muted: #9e9e9e;
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-tertiary: #27272a;
+  --accent-primary: #FFD500;
+  --accent-secondary: #FFEA7F;
+  --accent-glow: rgba(255, 213, 0, 0.4);
+  --accent-dim: rgba(255, 213, 0, 0.08);
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-bright: #ffffff;
   --glass-bg: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(255, 255, 255, 0.05);
-  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --glass-bg-hover: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 213, 0, 0.4);
+  --card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.6);
+  --card-shadow-hover: 0 16px 48px -8px rgba(0, 0, 0, 0.8), 0 0 24px rgba(255, 213, 0, 0.15);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -71,8 +83,8 @@ body {
   gap: 8px;
   padding: 12px 20px;
   background: rgba(5, 5, 7, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--glass-border);
   flex-wrap: wrap;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
@@ -271,8 +283,8 @@ body {
 
 .id-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 28px 32px;
@@ -320,7 +332,7 @@ body {
   border-radius: 16px;
   border: 1px solid var(--glass-border);
   background: var(--glass-bg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
   transition: all 0.3s ease;
   box-shadow: var(--card-shadow);
 }
@@ -356,7 +368,7 @@ body {
   position: relative;
   padding: 50px 60px;
   background: linear-gradient(145deg, rgba(20, 20, 25, 0.6), rgba(5, 5, 7, 0.8));
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 179, 0, 0.1);
   border-radius: 20px;
   margin-bottom: 40px;
@@ -365,7 +377,7 @@ body {
 }
 
 .narrative:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.01);
   box-shadow: inset 0 0 40px rgba(0,0,0,0.6), 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255, 179, 0, 0.05);
 }
 
@@ -461,7 +473,7 @@ body {
   margin-bottom: 60px;
   padding: 40px 45px;
   background: var(--glass-bg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -531,7 +543,7 @@ body {
   position: relative;
   padding: 40px;
   background: var(--glass-bg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   overflow: hidden;
@@ -553,7 +565,7 @@ body {
 
 .power-card:hover {
   border-color: rgba(255, 179, 0, 0.25);
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 20px rgba(255, 179, 0, 0.05);
   background: rgba(255, 179, 0, 0.02);
 }
@@ -660,7 +672,7 @@ body {
 .nine-card:hover {
   border-color: rgba(255, 179, 0, 0.25);
   background: rgba(255, 179, 0, 0.04);
-  transform: translateY(-6px);
+  transform: translateY(-6px) scale(1.02);
   box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 15px rgba(255, 179, 0, 0.1);
 }
 
@@ -696,7 +708,7 @@ body {
 .char-profile {
   padding: 50px;
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 179, 0, 0.1);
   border-radius: 24px;
   margin-bottom: 40px;
@@ -869,7 +881,7 @@ body {
 .god-card {
   padding: 40px;
   background: var(--glass-bg);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   transition: all 0.4s ease;
@@ -878,7 +890,7 @@ body {
 
 .god-card:hover {
   border-color: rgba(255, 179, 0, 0.3);
-  transform: translateY(-6px);
+  transform: translateY(-6px) scale(1.02);
   box-shadow: 0 15px 50px rgba(0,0,0,0.5), 0 0 20px rgba(255, 179, 0, 0.08);
   background: rgba(255, 179, 0, 0.02);
 }
@@ -943,14 +955,14 @@ body {
 
 .irony-believes {
   background: rgba(20, 20, 25, 0.6);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
   color: #a0a0a0;
   border-right: 1px solid rgba(255, 179, 0, 0.15);
 }
 
 .irony-truth {
   background: rgba(255, 179, 0, 0.05);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
   color: #e0e0e0;
 }
 
@@ -1045,7 +1057,7 @@ body {
 
 .footer-icons a:hover {
   opacity: 1;
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.01);
   filter: drop-shadow(0 0 12px var(--accent-primary));
 }
 
@@ -1352,6 +1364,15 @@ body.theme-satanail {
 .nav__theme-toggle svg {
   width: 18px;
   height: 18px;
+}
+
+
+/* --------------------------------------------------------
+   TACTILE MICRO-ANIMATIONS
+   -------------------------------------------------------- */
+button:active, .nav__audio-toggle:active, .nav__theme-toggle:active, .modal__close:active, .nav__link:active {
+  transform: scale(0.96) !important;
+  transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 </style>
