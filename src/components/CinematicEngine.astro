@@ -6,14 +6,17 @@ interface Props {
 const { themeSong = 'bg-golden.opus' } = Astro.props;
 ---
 
+<!-- Cinematic Data Container -->
+<div id="cinematic-data" data-theme-song={themeSong} class="hidden"></div>
+
 <!-- Custom Cursor Element -->
 <div id="custom-cursor" class="pointer-events-none fixed top-0 left-0 w-4 h-4 rounded-full border-2 border-white/50 z-[9999] transition-transform duration-75 ease-out mix-blend-difference hidden md:block"></div>
 
 <!-- Audio Elements -->
-<audio id="bg-audio" src={`/audio/${themeSong}`} loop preload="auto"></audio>
-<audio id="hover-audio" src="/audio/hover.mp3" preload="auto"></audio>
-<audio id="click-audio" src="/audio/click.mp3" preload="auto"></audio>
-<audio id="theme-shift-audio" src="/audio/theme-shift.mp3" preload="auto"></audio>
+<audio id="bg-audio" transition:persist="bg-audio" loop preload="auto"></audio>
+<audio id="hover-audio" transition:persist="hover-audio" src="/audio/hover.mp3" preload="auto"></audio>
+<audio id="click-audio" transition:persist="click-audio" src="/audio/click.mp3" preload="auto"></audio>
+<audio id="theme-shift-audio" transition:persist="theme-shift-audio" src="/audio/theme-shift.mp3" preload="auto"></audio>
 
 <script>
 	// Use global state for audio toggle so it persists across view transitions
@@ -43,8 +46,8 @@ const { themeSong = 'bg-golden.opus' } = Astro.props;
 					trail.style.top = `${e.clientY - 3}px`;
 					
 					// Theme colors
-					const isBlood = document.body.classList.contains('from-black'); // rough check, but better to check data-theme if we had one
-					trail.style.backgroundColor = 'rgba(255, 213, 0, 0.8)'; // default gold trail
+					const isBlood = document.body.classList.contains('from-black'); 
+					trail.style.backgroundColor = 'rgba(255, 213, 0, 0.8)'; 
 					
 					document.body.appendChild(trail);
 					setTimeout(() => trail.remove(), 400);
@@ -60,22 +63,36 @@ const { themeSong = 'bg-golden.opus' } = Astro.props;
 		}
 		
 		const bgAudio = document.getElementById('bg-audio') as HTMLAudioElement;
+		const cinematicData = document.getElementById('cinematic-data');
 		
-		// Attempt to play if enabled (browsers might block autoplay until interaction)
-		if (window.audioEnabled && bgAudio) {
+		if (bgAudio && cinematicData) {
+			const newSong = cinematicData.getAttribute('data-theme-song') || 'bg-golden.opus';
+			const targetSrc = `/audio/${newSong}`;
+			
 			bgAudio.volume = 0.2;
-			const playPromise = bgAudio.play();
-			if (playPromise !== undefined) {
-				playPromise.catch(() => {
-					console.log("Autoplay blocked by browser. User must click first.");
-					const startAudio = () => {
-						if (window.audioEnabled && bgAudio.paused) {
-							bgAudio.play().catch(()=>{});
-						}
-						document.removeEventListener('click', startAudio);
-					};
-					document.addEventListener('click', startAudio);
-				});
+			
+			// Check if we need to change the track
+			// targetSrc is absolute path (e.g. /audio/bg-lucifer.mp3)
+			// bgAudio.src will resolve to full url (e.g. http://localhost:4321/audio/bg-lucifer.mp3)
+			if (!bgAudio.src.endsWith(targetSrc)) {
+				bgAudio.src = targetSrc;
+			}
+			
+			// Attempt to play if enabled
+			if (window.audioEnabled) {
+				const playPromise = bgAudio.play();
+				if (playPromise !== undefined) {
+					playPromise.catch(() => {
+						console.log("Autoplay blocked by browser. User must click first.");
+						const startAudio = () => {
+							if (window.audioEnabled && bgAudio.paused) {
+								bgAudio.play().catch(()=>{});
+							}
+							document.removeEventListener('click', startAudio);
+						};
+						document.addEventListener('click', startAudio);
+					});
+				}
 			}
 		}
 
