@@ -13,10 +13,10 @@ const { themeSong = 'bg-golden.opus' } = Astro.props;
 <div id="custom-cursor" class="pointer-events-none fixed top-0 left-0 w-4 h-4 rounded-full border-2 border-white/50 z-[9999] transition-transform duration-75 ease-out mix-blend-difference hidden md:block"></div>
 
 <!-- Audio Elements -->
-<audio id="bg-audio" transition:persist="bg-audio" loop preload="auto"></audio>
-<audio id="hover-audio" transition:persist="hover-audio" src="/audio/hover.mp3" preload="auto"></audio>
-<audio id="click-audio" transition:persist="click-audio" src="/audio/click.mp3" preload="auto"></audio>
-<audio id="theme-shift-audio" transition:persist="theme-shift-audio" src="/audio/theme-shift.mp3" preload="auto"></audio>
+<audio id="bg-audio" transition:persist="bg-audio" loop preload="metadata"></audio>
+<audio id="hover-audio" transition:persist="hover-audio" src="/audio/hover.mp3" preload="metadata"></audio>
+<audio id="click-audio" transition:persist="click-audio" src="/audio/click.mp3" preload="metadata"></audio>
+<audio id="theme-shift-audio" transition:persist="theme-shift-audio" src="/audio/theme-shift.mp3" preload="metadata"></audio>
 
 <script>
 	// Use global state for audio toggle so it persists across view transitions
