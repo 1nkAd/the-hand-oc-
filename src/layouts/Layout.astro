@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
@@ -31,6 +32,7 @@ const themeClasses = {
 		<ClientRouter />
 	</head>
 	<body class={`${themeClasses[theme]} min-h-screen transition-colors duration-1000 pt-20 flex flex-col`}>
+		<SpeedInsights />
 		<Navbar />
 		<div class="flex-grow">
 			<slot />
