@@ -75,6 +75,10 @@
 
     // --- Audio Toggle Logic ---
     function updateAudioUI() {
+      if (typeof window.audioEnabled === 'undefined') {
+        const stored = localStorage.getItem('audio_enabled');
+        window.audioEnabled = stored === null ? true : stored === 'true';
+      }
       const enabled = window.audioEnabled;
       ['desktop', 'mobile'].forEach(type => {
         const toggleBtn = document.getElementById(`audio-toggle-${type}`);

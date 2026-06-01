@@ -55,7 +55,8 @@ const { themeSong = 'bg-golden.opus' } = Astro.props;
 		// --- AUDIO ENGINE ---
 		// Initialize state from localStorage
 		if (typeof window.audioEnabled === 'undefined') {
-			window.audioEnabled = localStorage.getItem('audio_enabled') === 'true';
+			const stored = localStorage.getItem('audio_enabled');
+			window.audioEnabled = stored === null ? true : stored === 'true';
 		}
 		
 		const bgAudio = document.getElementById('bg-audio') as HTMLAudioElement;
@@ -63,9 +64,19 @@ const { themeSong = 'bg-golden.opus' } = Astro.props;
 		// Attempt to play if enabled (browsers might block autoplay until interaction)
 		if (window.audioEnabled && bgAudio) {
 			bgAudio.volume = 0.2;
-			bgAudio.play().catch(() => {
-				console.log("Autoplay blocked by browser. User must click first.");
-			});
+			const playPromise = bgAudio.play();
+			if (playPromise !== undefined) {
+				playPromise.catch(() => {
+					console.log("Autoplay blocked by browser. User must click first.");
+					const startAudio = () => {
+						if (window.audioEnabled && bgAudio.paused) {
+							bgAudio.play().catch(()=>{});
+						}
+						document.removeEventListener('click', startAudio);
+					};
+					document.addEventListener('click', startAudio);
+				});
+			}
 		}
 
 		// Interactive Elements Sound & Cursor Hover
